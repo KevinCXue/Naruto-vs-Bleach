@@ -30,48 +30,51 @@ for i in range(len(naruto)):
     naruto[i]=map(lambda x:transform.scale(x,(int(1.4*x.get_width()),int(1.4*x.get_height()))),naruto[i])
     
 # Link 
-link=[[image.load("link\\link"+str(i)+".png") for i in range(24,28)],#Stand
-      [image.load("link\\link"+str(i)+".png") for i in range(17,23)],#Walk
-      [image.load("link\\link"+str(i)+".png") for i in range(28,36)],#run
-      [image.load("link\\link"+str(i)+".png") for i in range(36,40)],#Jump
-      [image.load("link\\link"+str(i)+".png") for i in range(23,25)],#Hurt Light
-      [image.load("link\\link"+str(i)+".png") for i in range(23,25)],#Hurt Hard
-      [image.load("link\\link"+str(i)+".png") for i in range(40,51)],#Soft Attack
-      [image.load("link\\link"+str(i)+".png") for i in range(51,56)]]#Hard Attack
+link=[[image.load("link\\link"+str(i)+".png") for i in range(24,28)], # Stand
+      [image.load("link\\link"+str(i)+".png") for i in range(17,23)], # Walk
+      [image.load("link\\link"+str(i)+".png") for i in range(28,36)], # Run
+      [image.load("link\\link"+str(i)+".png") for i in range(36,40)], # Jump
+      [image.load("link\\link"+str(i)+".png") for i in range(23,25)], # Hurt Light
+      [image.load("link\\link"+str(i)+".png") for i in range(23,25)], # Hurt Hard
+      [image.load("link\\link"+str(i)+".png") for i in range(40,51)], # Soft Attack
+      [image.load("link\\link"+str(i)+".png") for i in range(51,56)]] # Hard Attack
 
 # Itachi Uchiha
-itachi=[[image.load("itachi\\itachi"+str(i)+".png") for i in range(1,5)],#Stand
-        [image.load("itachi\\itachi"+str(i)+".png") for i in range(11,17)],#Walk
-        [image.load("itachi\\itachi21.png")],#block
-        [image.load("itachi\\itachi"+str(i)+".png") for i in range(17,21)],#Jump
-        [image.load("itachi\\itachi"+str(i)+".png") for i in range(22,24)],#Hurt Light
-        [image.load("itachi\\itachi"+str(i)+".png") for i in range(24,28)],#Hurt Hard
-        [image.load("itachi\\itachi"+str(i)+".png") for i in range(28,41)],#Soft Attack
-        [transform.flip(image.load("itachi\\itachi"+str(i)+".png"),1,0) for i in range(41,45)]]#Hard Attack
+itachi=[[image.load("itachi\\itachi"+str(i)+".png") for i in range(1,5)], # Stand
+        [image.load("itachi\\itachi"+str(i)+".png") for i in range(11,17)], # Walk
+        [image.load("itachi\\itachi21.png")], # Block
+        [image.load("itachi\\itachi"+str(i)+".png") for i in range(17,21)], # Jump
+        [image.load("itachi\\itachi"+str(i)+".png") for i in range(22,24)], # Hurt Light
+        [image.load("itachi\\itachi"+str(i)+".png") for i in range(24,28)], # Hurt Hard
+        [image.load("itachi\\itachi"+str(i)+".png") for i in range(28,41)], # Soft Attack
+        [transform.flip(image.load("itachi\\itachi"+str(i)+".png"),1,0) for i in range(41,45)]] # Hard Attack
 
 # Gaara of the Sand
-gaara=[[image.load("gaara\\gaara"+str(i)+".png") for i in range(1,5)],#Stand
-        [image.load("gaara\\gaara"+str(i)+".png") for i in range(11,17)],#Walk
-        [image.load("gaara\\gaara22.png")],#block
-        [image.load("gaara\\gaara"+str(i)+".png") for i in range(18,22)],#Jump
-        [image.load("gaara\\gaara"+str(i)+".png") for i in range(23,29)],#Hurt Light
-        [image.load("gaara\\gaara"+str(i)+".png") for i in range(23,29)],#Hurt Hard
-        [image.load("gaara\\gaara"+str(i)+".png") for i in range(29,43)],#Soft Attack
-        [image.load("gaara\\gaara"+str(i)+".png") for i in range(43,55)]]#Hard Attack
+gaara=[[image.load("gaara\\gaara"+str(i)+".png") for i in range(1,5)], # Stand
+        [image.load("gaara\\gaara"+str(i)+".png") for i in range(11,17)], # Walk
+        [image.load("gaara\\gaara22.png")], # Block
+        [image.load("gaara\\gaara"+str(i)+".png") for i in range(18,22)], # Jump
+        [image.load("gaara\\gaara"+str(i)+".png") for i in range(23,29)], # Hurt Light
+        [image.load("gaara\\gaara"+str(i)+".png") for i in range(23,29)], # Hurt Hard
+        [image.load("gaara\\gaara"+str(i)+".png") for i in range(29,43)], # Soft Attack
+        [image.load("gaara\\gaara"+str(i)+".png") for i in range(43,55)]] # Hard Attack
 
 # Ichigo Kurosaki
-ichigo=[[image.load("ichigo\\ichigo"+str(i)+".png") for i in range(2,6)],#Stand
-        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(6,14)],#Walk
-        [image.load("ichigo\\ichigo19.png") ],#block
-        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(14,18)],#Jump
-        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(32,34)],#Hurtlight
-        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(35,39)],#Hurthard
-        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(48,80)],#Soft Attack
-        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(80,88)]]#Hard Attack
+ichigo=[[image.load("ichigo\\ichigo"+str(i)+".png") for i in range(2,6)], # Stand
+        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(6,14)], # Walk
+        [image.load("ichigo\\ichigo19.png") ], # Block
+        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(14,18)], # Jump
+        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(32,34)], # Hurt Light
+        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(35,39)], # Hurt Hard
+        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(48,80)], # Soft Attack
+        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(80,88)]] # Hard Attack
 
 
 # Sprites for Chakra Regen Aura
 aura=[image.load("Effects\\aura\\aura"+str(i)+".png") for i in range(1,11)]
+
+
+
 ######## Character Selection ########
     
 
