@@ -15,21 +15,21 @@ from math import*
 
 ########### CHARACTERS ###########
 
-#Naruto Uzumaki
-naruto=[[image.load("naruto\\naruto"+str(i)+".png") for i in range(1,7)],#Stand
-        [image.load("naruto\\naruto"+str(i)+".png") for i in range(7,13)],#Walk
-        [image.load("naruto\\naruto24.png")],#block
-        [image.load("naruto\\naruto"+str(i)+".png") for i in range(13,17)],#Jump
-        [image.load("naruto\\naruto"+str(i)+".png") for i in range(17,19)],#Hurt Light
-        [image.load("naruto\\naruto"+str(i)+".png") for i in range(19,23)],#Hurt Hard
-        [image.load("naruto\\naruto"+str(i)+".png") for i in range(23,36)],#Soft Attack
-        [image.load("naruto\\naruto"+str(i)+".png") for i in range(36,40)]]#Hard Attack
+# Naruto Uzumaki
+naruto=[[image.load("naruto\\naruto"+str(i)+".png") for i in range(1,7)], # Stand
+        [image.load("naruto\\naruto"+str(i)+".png") for i in range(7,13)], # Walk
+        [image.load("naruto\\naruto24.png")], # Block
+        [image.load("naruto\\naruto"+str(i)+".png") for i in range(13,17)], # Jump
+        [image.load("naruto\\naruto"+str(i)+".png") for i in range(17,19)], # Hurt Light
+        [image.load("naruto\\naruto"+str(i)+".png") for i in range(19,23)], # Hurt Hard
+        [image.load("naruto\\naruto"+str(i)+".png") for i in range(23,36)], # Soft Attack
+        [image.load("naruto\\naruto"+str(i)+".png") for i in range(36,40)]] # Hard Attack
 
 #The code below will resize each of the sprite for naruto appropriatly since naruto sprites are the smallest
 for i in range(len(naruto)):
     naruto[i]=map(lambda x:transform.scale(x,(int(1.4*x.get_width()),int(1.4*x.get_height()))),naruto[i])
     
-#Link 
+# Link 
 link=[[image.load("link\\link"+str(i)+".png") for i in range(24,28)],#Stand
       [image.load("link\\link"+str(i)+".png") for i in range(17,23)],#Walk
       [image.load("link\\link"+str(i)+".png") for i in range(28,36)],#run
@@ -39,7 +39,7 @@ link=[[image.load("link\\link"+str(i)+".png") for i in range(24,28)],#Stand
       [image.load("link\\link"+str(i)+".png") for i in range(40,51)],#Soft Attack
       [image.load("link\\link"+str(i)+".png") for i in range(51,56)]]#Hard Attack
 
-#Itachi Uchiha
+# Itachi Uchiha
 itachi=[[image.load("itachi\\itachi"+str(i)+".png") for i in range(1,5)],#Stand
         [image.load("itachi\\itachi"+str(i)+".png") for i in range(11,17)],#Walk
         [image.load("itachi\\itachi21.png")],#block
@@ -49,7 +49,7 @@ itachi=[[image.load("itachi\\itachi"+str(i)+".png") for i in range(1,5)],#Stand
         [image.load("itachi\\itachi"+str(i)+".png") for i in range(28,41)],#Soft Attack
         [transform.flip(image.load("itachi\\itachi"+str(i)+".png"),1,0) for i in range(41,45)]]#Hard Attack
 
-#Gaara of the Sand
+# Gaara of the Sand
 gaara=[[image.load("gaara\\gaara"+str(i)+".png") for i in range(1,5)],#Stand
         [image.load("gaara\\gaara"+str(i)+".png") for i in range(11,17)],#Walk
         [image.load("gaara\\gaara22.png")],#block
@@ -59,7 +59,7 @@ gaara=[[image.load("gaara\\gaara"+str(i)+".png") for i in range(1,5)],#Stand
         [image.load("gaara\\gaara"+str(i)+".png") for i in range(29,43)],#Soft Attack
         [image.load("gaara\\gaara"+str(i)+".png") for i in range(43,55)]]#Hard Attack
 
-#Ichigo Kurosaki
+# Ichigo Kurosaki
 ichigo=[[image.load("ichigo\\ichigo"+str(i)+".png") for i in range(2,6)],#Stand
         [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(6,14)],#Walk
         [image.load("ichigo\\ichigo19.png") ],#block
@@ -70,7 +70,7 @@ ichigo=[[image.load("ichigo\\ichigo"+str(i)+".png") for i in range(2,6)],#Stand
         [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(80,88)]]#Hard Attack
 
 
-#Sprites for Chakra Regen Aura
+# Sprites for Chakra Regen Aura
 aura=[image.load("Effects\\aura\\aura"+str(i)+".png") for i in range(1,11)]
 ######## Character Selection ########
     
@@ -603,10 +603,10 @@ def special():
         narutos2p1()
     elif p1==gaara:
         gaaras1p1()
-        ##gaaras2p1()
+        gaaras2p1()
     elif p1==itachi:
         itachis1p1()
-        ##itachis2p1()
+        itachis2p1()
     elif p1==ichigo or p1==bankai:
         ichigos1p1()
         ichigos2p1()
@@ -619,10 +619,10 @@ def special():
         narutos2p2()
     elif p2==gaara:
         gaaras1p2()
-        ##gaaras2p2()
+        gaaras2p2()
     elif p2==itachi:
         itachis1p2()
-        ##itachis2p2()
+        itachis2p2()
     elif p2==ichigo or p2==bankai:
         ichigos1p2()
         ichigos2p2()
