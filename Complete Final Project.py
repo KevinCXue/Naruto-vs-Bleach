@@ -647,7 +647,7 @@ def itachis1p1():
     global p1vely,itachis1p1dm,p1tempx,p1tempy,p1x,p1y,p1chakra
 
     #Turns itachi special on once conditions are met,ex. appropriate key etc.
-    if itachis1p1special==False and keys[117] and p1chakra>=25:
+    if itachis1p1special==False and key.get_pressed()[K_u] and p1chakra>=25:
         #removes energy, resets counter, sets up temp position, and turns on special status 
         p1chakra-=25
         itachis1p1count,itachis1p1count2=0,0
@@ -712,7 +712,7 @@ p2tempx,p2tempy=0,0
 def itachis1p2():
     global itachis1p2special,itachis1p2count,itachis1p2count2,p2sprite
     global p1health,p1x,p2vely,itachis1p2dm,p2tempx,p2tempy,p2x,p2y,p2chakra
-    if itachis1p2special==False and keys[K_KP4] and p2chakra>=25:
+    if itachis1p2special==False and key.get_pressed()[K_KP4] and p2chakra>=25:
         p2chakra-=25
         itachis1p2count,itachis1p2count2=0,0
         p2tempx,p2tempy=p2x,p2y
@@ -765,7 +765,7 @@ cross=image.load("itachiS2\\cross.png")
 
 def itachis2p1():
     global p2health,p1chakra
-    if keys[105] and p1chakra>=50: #starts when the condition is met
+    if key.get_pressed()[K_i] and p1chakra>=50: #starts when the condition is met
         p1chakra-=40
         for i in range(len(itachis2part1)):
             for j in range(3): 
@@ -796,7 +796,7 @@ def itachis2p1():
 #below is the same attack for player 2 with player 2 variables
 def itachis2p2():
     global p1health,p2chakra
-    if keys[K_KP5] and p2chakra>=50:
+    if key.get_pressed()[K_KP5] and p2chakra>=50:
         p2chakra-=50
         for i in range(len(itachis2part1)):
             for j in range(3):
@@ -844,7 +844,7 @@ ninetail=[[image.load("narutoS1\\ninetail"+str(i)+".png") for i in range(1,8)],#
 def narutos1p1():
     global narutos1p1temp,p1,narutos1p1special,narutos1p1counter
     global p1x,p2health,p1sc,p1wc,p1jump,p1cc,p1hc,p1shc,p2fallstatus,p1chakra
-    if keys[117] and narutos1p1special==False and p1chakra>=40: 
+    if key.get_pressed()[K_u] and narutos1p1special==False and p1chakra>=40: 
         p1chakra-=40 
         narutos1p1temp=p1[:] #the temp variable holds all the player sprites before they are changed
         p1=ninetail[:] #all of player 1 sprites are replaced with ninetail sprites
@@ -853,9 +853,9 @@ def narutos1p1():
         narutos1p1counter+=1 #counter increases
 
         #the code below will move the player much faster when he press left or right
-        if keys[100]:
+        if key.get_pressed()[K_d]:
             p1x+=15 
-        if keys[97]:
+        if key.get_pressed()[K_a]:
             p1x-=15
         if p1rect.colliderect(p2rect): # if the player hits the opponent, the opponent falls down, and health decreases over time
             p2health-=0.8
@@ -874,7 +874,7 @@ narutos1p2counter=0
 def narutos1p2():
     global narutos1p2temp,p2,narutos1p2special,narutos1p2counter
     global p2x,p1health,p2sc,p2wc,p2jump,p2cc,p2hc,p2shc,p1fallstatus,p2chakra
-    if keys[K_KP4] and narutos1p2special==False and p2chakra>=40:
+    if key.get_pressed()[K_KP4] and narutos1p2special==False and p2chakra>=40:
         p2chakra-=40
         narutos1p2temp=p2[:]
         p2=ninetail[:]
@@ -882,9 +882,9 @@ def narutos1p2():
         p2sc,p2wc,p2jump,p2cc,p2hc,p2shc=0,0,0,0,0,0
     if narutos1p2special==True:
         narutos1p2counter+=1
-        if keys[K_RIGHT]:
+        if key.get_pressed()[K_RIGHT]:
             p2x+=15
-        if keys[K_LEFT]:
+        if key.get_pressed()[K_LEFT]:
             p2x-=15
         if p2rect.colliderect(p1rect):
             p1health-=0.8
@@ -918,7 +918,7 @@ p1smallx,p1smally=0,0 #slope and/or direction in which way the ball should trava
 def narutos2p1():
     global narutos2p1special,narutos2p1counter,p1sprite,p1tempx,p1tempy,p1tempdirect
     global p1x,p1y,p1direct,p1rasx,p1rasy,p1smallx,p1smally,p2health,p2fallstatus,p1chakra
-    if narutos2p1special==False and keys[105] and p1chakra>40:
+    if narutos2p1special==False and key.get_pressed()[K_i] and p1chakra>40:
         p1chakra-=25
         narutos2p1counter=0
         narutos2p1special=True
@@ -997,7 +997,7 @@ p2smallx,p2smally=0,0
 def narutos2p2():
     global narutos2p2special,narutos2p2counter,p2sprite,p2tempx,p2tempy,p2tempdirect
     global p2x,p2y,p2direct,p2rasx,p2rasy,p2smallx,p2smally,p1health,p1fallstatus,p2chakra
-    if narutos2p2special==False and keys[K_KP5] and p2chakra>=25:
+    if narutos2p2special==False and key.get_pressed()[K_KP5] and p2chakra>=25:
         p2chakra-=25
         narutos2p2counter=0
         narutos2p2special=True
@@ -1072,16 +1072,16 @@ ichigos1p1counter=0
 def ichigos1p1():
     global ichigos1p1temp,p1,ichigos1p1special,ichigos1p1counter
     global p1x,p2health,p1sc,p1wc,p1jump,p1cc,p1hc,p1shc,p2fallstatus,p1chakra
-    if keys[117] and ichigos1p1special==False and p1chakra>=30:
+    if key.get_pressed()[K_u] and ichigos1p1special==False and p1chakra>=30:
         p1chakra-=40
         ichigos1p1temp=p1[:]
         p1=bankai[:]
         ichigos1p1special=True
     if ichigos1p1special==True:
         ichigos1p1counter+=1
-        if keys[100]:
+        if key.get_pressed()[K_d]:
             p1x+=15
-        if keys[97]:
+        if key.get_pressed()[K_a]:
             p1x-=15
         if p1rect.colliderect(p2rect):
             p2health-=0.8
@@ -1099,16 +1099,16 @@ ichigos1p2counter=0
 def ichigos1p2():
     global ichigos1p2temp,p2,ichigos1p2special,ichigos1p2counter
     global p2x,p1health,p2sc,p2wc,p2jump,p2cc,p2hc,p2shc,p1fallstatus,p2chakra
-    if keys[K_KP4] and ichigos1p2special==False and p2chakra>=30:
+    if key.get_pressed()[K_KP4] and ichigos1p2special==False and p2chakra>=30:
         p2chakra-=40
         ichigos1p2temp=p2[:]
         p2=bankai[:]
         ichigos1p2special=True
     if ichigos1p2special==True:
         ichigos1p2counter+=1
-        if keys[K_RIGHT]:
+        if key.get_pressed()[K_RIGHT]:
             p2x+=15
-        if keys[K_LEFT]:
+        if key.get_pressed()[K_LEFT]:
             p2x-=15
         if p2rect.colliderect(p1rect):
             p1health-=0.8
@@ -1131,7 +1131,7 @@ p1tempdirect=p1direct
 def ichigos2p1():
     global ichigos2p1counter,ichigos2p1special,p1tempx,p1tempy
     global p1sprite,p1tempdirect,p1direct,p1x,p1y,p2fallstatus,p1chakra,p2health
-    if keys[105] and ichigos2p1special==False and p1chakra>=25: #special activates
+    if key.get_pressed()[K_i] and ichigos2p1special==False and p1chakra>=25: #special activates
         p1chakra-=25
         ichigos2p1counter=0 #counter is reset
         p1tempdirect=p1direct #direction and positions are locked on
@@ -1169,7 +1169,7 @@ p2tempdirect=p2direct
 def ichigos2p2():
     global ichigos2p2counter,ichigos2p2special,p2tempx,p2tempy,p2chakra
     global p2sprite,p2tempdirect,p2direct,p2x,p2y,p1fallstatus,p1health
-    if keys[K_KP5] and ichigos2p2special==False and p2chakra>=25:
+    if key.get_pressed()[K_KP5] and ichigos2p2special==False and p2chakra>=25:
         p2chakra-=25
         ichigos2p2counter=0
         p2tempdirect=p2direct
@@ -1208,7 +1208,7 @@ links1p1tempx2="Left"
 def links1p1(): #Link's Arrow Attack
     global links1p1special,links1p1count,links1p1count2,p1sprite,sp,loopcount,p2rect,p2health,p1x,p1y,p1vely,p2x,links1p1x2,linkS1,linkArrows
     global links1p1x2,p1direct,links1p1tempdirect,p1tempx,p1tempy,links1p1tempx2,p1chakra
-    if links1p1special!=True and keys[117] and p1chakra>=10: #U Key
+    if links1p1special!=True and key.get_pressed()[K_u] and p1chakra>=10: #U Key
         p1chakra-=10
         links1p1count=0
         links1p1count2=0
@@ -1269,7 +1269,7 @@ links1p2tempx2="Left"
 def links1p2():
     global links1p2special,links1p2count,links1p2count2,p2sprite,sp,loopcount,p1rect,p1health,p2x,p2y,p2vely,p1x,links1p2x2,linkS1,linkArrows,links1p2x2
     global p2direct,links1p2tempdirect,p2tempx,p2tempy,links1p2tempx2,p2chakra
-    if links1p2special!=True and keys[K_KP4]:
+    if links1p2special!=True and key.get_pressed()[K_KP4]:
         p2chakra-=10
         links1p2count=0
         links1p2count2=0
@@ -1335,7 +1335,7 @@ links2p1tempx2="Left"
 def links2p1(): #Bomb Attack
     global links2p1special,links2p1count,links2p1count2,p1sprite,sp,loopcount,p2rect,p2health,p1x,p1y,p1vely,p2x,links2p1x2,linkS2,linkBomb
     global linkExpolsion,links2p1x2,p1direct,links2p1tempdirect,linkp1Bcount,p1tempx,p1tempy,links2p1tempx2,p1chakra
-    if links2p1special!=True and keys[105] and p1chakra>=15: #I Key
+    if links2p1special!=True and key.get_pressed()[K_i] and p1chakra>=15: #I Key
         p1chakra-=15
         links2p1count=0
         links2p1count2=0
@@ -1452,7 +1452,7 @@ links2p2tempx2="Left"
 def links2p2():
     global links2p2special,links2p2count,links2p2count2,p2sprite,sp,loopcount,p1rect,p1health,p2x,p2y,p2vely,p1x,links2p2x2,linkS2,linkBomb
     global linkExpolsion,links2p2x2,p2direct,links2p2tempdirect,linkp2Bcount,p2tempx,p2tempy,links2p2tempx2,p2chakra
-    if links2p2special!=True and keys[K_KP5]:
+    if links2p2special!=True and key.get_pressed()[K_KP5]:
         p2chakra-=15
         
         links2p2count=0
@@ -1567,7 +1567,7 @@ p1tempx,p1tempy
 def gaaras1p1(): #Gaara's Sand Coffin Attack
     global gaaras1p1special,gaaras1p1count,p1sprite,p2health,p1direct,p2sprite,p1chakra
     global p1x,p1y,p1tempx,p1tempy,gaaras1p1tempdirect,p1vely
-    if gaaras1p1special!=True and keys[117] and p1chakra>30:
+    if gaaras1p1special!=True and key.get_pressed()[K_u] and p1chakra>30:
         p1chakra-=30
         gaaras1p1count=0
         p1tempx,p1tempy=p1x,p1y             #Locks Position of player
@@ -1596,7 +1596,7 @@ p2tempx,p2tempy
 def gaaras1p2(): #Same for Player 2
     global gaaras1p2special,gaaras1p2count,p2sprite,p1health,p2direct,p1sprite
     global p2x,p2y,p2tempx,p2tempy,gaaras1p2tempdirect,p2vely
-    if gaaras1p2special!=True and keys[K_KP4]:
+    if gaaras1p2special!=True and key.get_pressed()[K_KP4]:
         gaaras1p2count=0
         p2tempx,p2tempy=p2x,p2y
         gaaras1p2special=True
@@ -1625,7 +1625,7 @@ p1gcount=0
 p1bx,p1by=650,150
 def gaaras2p1():#Gaara's Ichibi Transformation Chakra Blast of DOOM!
     global p1gspecial, p1bx,p1by,p1gcount,p2health,p2fallstatus,p2x,p1chakra
-    if p1gspecial==False and keys[105] and p1chakra>50:
+    if p1gspecial==False and key.get_pressed()[K_i] and p1chakra>50:
         p1chakra-=50
         p1gcount=0
         p1gspecial=True
@@ -1668,7 +1668,7 @@ p2gcount=0
 p2bx,p2by=650,150
 def gaaras2p2():
     global p2gspecial, p2bx,p2by,p2gcount,p1health,p1fallstatus,p1x,p2chakra
-    if p2gspecial==False and keys[K_KP5] and p2chakra>30:
+    if p2gspecial==False and key.get_pressed()[K_KP5] and p2chakra>30:
         p2chakra-=30
         p2gcount=0
         p2gspecial=True
@@ -1725,7 +1725,7 @@ while running:
         
     ########################## Player 1 #####################################
         if p1softhurt==False and p1fallstatus==False:   # If character is not hurt or fallen, character can operate
-            if keys[100]:               #Right Key A Key
+            if key.get_pressed()[K_d]:               #Right Key A Key
                 if p1ground==True:      #On ground, character walk
                     p1x+=10
                     p1direct="Right"
@@ -1735,7 +1735,7 @@ while running:
                     p1direct="Right"
                     
                 
-            elif keys[97]:              #Left Key D Key
+            elif key.get_pressed()[K_a]:              #Left Key D Key
                 if p1ground==True:
                     p1x-=10
                     p1direct="Left"
@@ -1745,15 +1745,15 @@ while running:
                     p1direct="Left"
                                 
             else:
-                if p1ground==True and keys[K_UP]==False:        #Standing if character des nothing
+                if p1ground==True and not key.get_pressed()[K_UP]:        #Standing if character does nothing
                     p1sprite=direction(p1[0][p1sc],p1direct)
                     
-            if keys[108] and p1ground==True:#L Key Blocking
+            if key.get_pressed()[K_l] and p1ground==True:#L Key Blocking
                 p1sprite=direction(p1[2][0],p1direct)
                 p1block=True
                     
             jumpanimation()
-            if keys[119]:#Up Key
+            if key.get_pressed()[K_w]:#Up Key
                 if p1ground==True:
                     p1sprite=direction(p1[3][p1jump],p1direct)
                     p1djump=1
@@ -1769,7 +1769,7 @@ while running:
                 p1sprite=direction(p1[3][p1jump],p1direct) #Float animation
                 
                 
-            if keys[106]and keys[100]==False and keys[97]==False and keys[119]==False:#Soft J key Can not move while attacking
+            if key.get_pressed()[K_j]and key.get_pressed()[K_d]==False and key.get_pressed()[K_a]==False and key.get_pressed()[K_w]==False:  #Soft J key Can not move while attacking
                 
                 p1sprite=direction(p1[6][p1cc],p1direct)
                 if p1rect.colliderect(p2rect):
@@ -1785,7 +1785,7 @@ while running:
                 else:p2softhurt=False
             else:p2softhurt=False
             
-            if keys[107]and keys[100]==False and keys[97]==False and keys[119]==False:#Hard K Key Can not move while attacking
+            if key.get_pressed()[K_k]and key.get_pressed()[K_d]==False and key.get_pressed()[K_a]==False and key.get_pressed()[K_w]==False:#Hard K Key Can not move while attacking
                 p1sprite=direction(p1[7][p1hc],p1direct)
                 if p1rect.colliderect(p2rect):
                     if p2block==False and p2protect==False:#If not blocking or invincible, opponent gets hurt
@@ -1797,7 +1797,7 @@ while running:
                     else:
                         p2x-=1
                         
-            if keys[115] and keys[97]==False and keys[100]==False and p1ground==True:#Chakra Charge S Key
+            if key.get_pressed()[K_s] and key.get_pressed()[K_a]==False and key.get_pressed()[K_d]==False and p1ground==True:#Chakra Charge S Key
                 p1chakra+=.5 
                 screen.blit(aura[ac],(p1x-25,p1y-30))
             
@@ -1806,7 +1806,7 @@ while running:
         
     ######################### Player 2 ######################################
         if p2softhurt==False and p2fallstatus==False: #same for player 2
-            if keys[K_RIGHT]:
+            if key.get_pressed()[K_RIGHT]:
                 if p2ground==True:
                     p2x+=10
                     p2direct="Right"
@@ -1816,7 +1816,7 @@ while running:
                     p2direct="Right"
                     
                 
-            elif keys[K_LEFT]:
+            elif key.get_pressed()[K_LEFT]:
                 if p2ground==True:
                     p2x-=10
                     p2direct="Left"
@@ -1826,14 +1826,14 @@ while running:
                     p2direct="Left"
                                 
             else:
-                if p2ground==True and keys[K_UP]==False:
+                if p2ground==True and not key.get_pressed()[K_UP]:
                     p2sprite=direction(p2[0][p2sc],p2direct)
                     
-            if keys[K_KP3] and p2ground==True:
+            if key.get_pressed()[K_KP3] and p2ground==True:
                 p2sprite=direction(p2[2][0],p2direct)
                 p2block=True
                     
-            if keys[K_UP]:
+            if key.get_pressed()[K_UP]:
                 if p2ground==True:
                     p2djump=1
                     p2vely=15
@@ -1844,7 +1844,7 @@ while running:
                     p2djump=2
                     
             
-            if keys[K_DOWN] and keys[K_LEFT]==False and keys[K_RIGHT]==False and p2ground==True:
+            if key.get_pressed()[K_DOWN] and key.get_pressed()[K_LEFT]==False and key.get_pressed()[K_RIGHT]==False and p2ground==True:
                 p2chakra+=.5
                 screen.blit(aura[ac],(p2x-25,p2y-30))
             
@@ -1852,7 +1852,7 @@ while running:
             if p2ground==False:
                 p2sprite=direction(p2[3][p2jump],p2direct)
                     
-            if keys[K_KP1]and keys[K_RIGHT]==False and keys[K_LEFT]==False and keys[K_UP]==False:                                                       
+            if key.get_pressed()[K_KP1]and key.get_pressed()[K_RIGHT]==False and key.get_pressed()[K_LEFT]==False and key.get_pressed()[K_UP]==False:                                                       
                 p2sprite=direction(p2[6][p2cc],p2direct)
                 if p2rect.colliderect(p1rect):
                     if p1block==False and p2protect==False:
@@ -1867,7 +1867,7 @@ while running:
                 else:p1softhurt=False
             else:p1softhurt=False
             
-            if keys[K_KP2]and keys[K_RIGHT]==False and keys[K_LEFT]==False and keys[K_UP]==False:
+            if key.get_pressed()[K_KP2]and key.get_pressed()[K_RIGHT]==False and key.get_pressed()[K_LEFT]==False and key.get_pressed()[K_UP]==False:
                 p2sprite=direction(p2[7][p2hc],p2direct)
                 if p2rect.colliderect(p1rect):
                     if p1block==False and p2protect==False:
