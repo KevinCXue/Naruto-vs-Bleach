@@ -75,8 +75,7 @@ aura=[image.load("Effects\\aura\\aura"+str(i)+".png") for i in range(1,11)]
 
 
 
-######## Character Selection ########
-    
+######## Character Selection #######
 
 p1=ichigo[:]
 p2=naruto[:]
@@ -90,27 +89,27 @@ loopCount = 0 # A counter that increases by one every loop
 
 
 ####    PLAYER 1 VARIABLES    ####
-p1ground=True  #status of whether or not player1 is touching ground or not
-p1x,p1y=200,300 #starting position of player 1
-p1direct='Right' #direction of player 1
-p1sprite=p1[0][0] #this variable holds the sprite image of player 1
-#Below are counters that keep track of the position in a list of a certain type of sprite, example: walking,jumping
-p1wc=0  #walk
-p1sc=0  #stand
-p1cc=0  #combo attack/soft attack
-p1hc=0  #hard attack
-p1shc=0 #soft hurt
-player1="none"#Keeps track of player 1's choice
-p1block=False#Keeps track if player 1 is blocking or not
-p1safe=0#Keeps track of time invincible
-p1protect=False#Keeps track if you are invincible or not
+p1ground=True  # status of whether or not player 1 is touching ground or not
+p1x,p1y=200,300 # starting position of player 1
+p1direct='Right' # direction of player 1
+p1sprite=p1[0][0] # this variable holds the sprite image of player 1
+# Below are counters that keep track of the position in a list of a certain type of sprite, example: walking,jumping
+p1wc=0  # walk
+p1sc=0  # stand
+p1cc=0  # combo attack/soft attack
+p1hc=0  # hard attack
+p1shc=0 # soft hurt
+player_1_choice="none" # Keeps track of player 1's choice
+p1block=False # Keeps track if player 1 is blocking or not
+p1safe=0 # Keeps track of time invincible
+p1protect=False # Keeps track if you are invincible or not
 
-p1vely=0 #y velocity of player 1
-p1softhurt=False  #indicates if player is getting hurt or not
-p1rect=Rect(p1x,p1y,p1sprite.get_width(),p1sprite.get_height()) #rectangle of player 1 sprite
-p1health,p1chakra=100,50 #health and chakra/energy of character 
-p1jump,p1djump=0,0 #p1jump holds the position in a list of jump sprites for current jump, p1djump indicates stage of double
-#jump
+p1vely=0 # y velocity of player 1
+p1softhurt=False  # indicates if player is getting hurt or not
+p1rect=Rect(p1x,p1y,p1sprite.get_width(),p1sprite.get_height()) # rectangle of player 1 sprite
+p1health,p1chakra=100,50 # health and chakra/energy of character 
+p1jump,p1djump=0,0 # p1jump holds the position in a list of jump sprites for current jump, p1djump indicates stage of double
+# jump
 
 ####    PLAYER 2 VARIABLES    ####
 #Note, these are almost same variable as player 1 and therefore do not need to be commented again
@@ -129,10 +128,10 @@ p2rect=Rect(p2x,p2y,p2sprite.get_width(),p2sprite.get_height())
 p2health,p2chakra=100,50
 p2jump,p2djump=0,0
 
-player2="none"#Keeps track of player 2's choice
-p2block=False#Keeps track if player 2 is blocking or not
-p2safe=0#Keeps track of time invincible
-p2protect=False#Keeps track if you are invincible or not
+player_2_choice="none" # Keeps track of player 2's choice
+p2block=False # Keeps track if player 2 is blocking or not
+p2safe=0 # Keeps track of time invincible
+p2protect=False # Keeps track if you are invincible or not
 
 
 ac=0 #position for the chakra recovering aura, used by both players
@@ -202,9 +201,9 @@ startbutton=image.load("menu\\startbutton.png")
 
 
 def playerselect(): #player select page
-    global page,player1,player2,p1,p2
+    global page,player_1_choice,player_2_choice,p1,p2
     screen.blit(selectback,(0,0)) #draws back
-    if player1=="none": #once the first player is not choosen
+    if player_1_choice=="none": #once the first player is not choosen
         for i in range(5): #it goes through 5 numbers and blits image best on a factor of those number
             #in appropriate places
             screen.blit(transform.scale(selectpic[i],(100,100)),(i*120+100,400))
@@ -216,59 +215,59 @@ def playerselect(): #player select page
                 screen.blit(transform.scale(selectstand[i],(100,300)),(100,50))
                 if mb[0]==1:
                     #once the player clicks on the picture
-                    #the player1 variables contain the name of the player using the char(player name list)
-                    player1=char[i]
+                    #the player_1_choice variable contain the name of the player using the char(player name list)
+                    player_1_choice=char[i]
                     time.wait(800) #waits a bit so the user doesnt click twice and chooses player 2 character
             screen.blit(ipics[1][0],(330,540))#this draws a button to go back to the main menu
             if Rect(330,540,153,35).collidepoint((mx,my)):  
                 screen.blit(ipics[1][1],(330,540)) #once clicked
                 if mb[0]==1: #it sends user to main menu page
                     page="frontpage"
-                    player1="none"
-                    player2="none"
+                    player_1_choice="none"
+                    player_2_choice="none"
                     break
                 
-    elif player1!="none" and player2=="none": #once player 1 has chosen a character
+    elif player_1_choice!="none" and player_2_choice=="none": #once player 1 has chosen a character
         for i in range(5): #it does the same thing for player 2 as the code above, but draws and outline around
             #player 1 character and draws an image of his character on the left
             screen.blit(transform.scale(selectpic[i],(100,100)),(i*120+100,400))
-            draw.rect(screen,(255,0,0),Rect(char.index(player1)*120+100,400,100,100),2)
-            screen.blit(transform.scale(selectstand[char.index(player1)],(100,300)),(100,50))
+            draw.rect(screen,(255,0,0),Rect(char.index(player_1_choice)*120+100,400,100,100),2)
+            screen.blit(transform.scale(selectstand[char.index(player_1_choice)],(100,300)),(100,50))
             if Rect(i*120+100,400,100,100).collidepoint((mx,my)):
                 draw.rect(screen,(0,0,255),Rect(i*120+100,400,100,100),2)
                 screen.blit(transform.flip(transform.scale(selectstand[i],(100,300)),1,0),(600,50))
                 if mb[0]==1:
-                    player2=char[i] #player 2 character is choosen
+                    player_2_choice=char[i] #player 2 character is choosen
             screen.blit(ipics[1][0],(330,540))#go back button
             if Rect(330,540,153,35).collidepoint((mx,my)): 
                 screen.blit(ipics[1][1],(330,540))
                 if mb[0]==1:
                     page="frontpage"
-                    player1="none"
-                    player2="none"
+                    player_1_choice="none"
+                    player_2_choice="none"
                     break  
-    elif player1!="none" and player2!="none": #once both characters are choosen
+    elif player_1_choice!="none" and player_2_choice!="none": #once both characters are choosen
         for i in range(5):#it draws a start button, that grows once the users mouse goes over it
             #it draws everything else; player 1 and player 2 character is highlighted and drawn
             screen.blit(transform.scale(selectpic[i],(100,100)),(i*120+100,400))
-            draw.rect(screen,(255,0,0),Rect(char.index(player1)*120+100,400,100,100),2)
-            draw.rect(screen,(0,0,255),Rect(char.index(player2)*120+100,400,100,100),2)   
-            screen.blit(transform.scale(selectstand[char.index(player1)],(100,300)),(100,50))
-            screen.blit(transform.flip(transform.scale(selectstand[char.index(player2)],(100,300)),1,0),(600,50))
+            draw.rect(screen,(255,0,0),Rect(char.index(player_1_choice)*120+100,400,100,100),2)
+            draw.rect(screen,(0,0,255),Rect(char.index(player_2_choice)*120+100,400,100,100),2)   
+            screen.blit(transform.scale(selectstand[char.index(player_1_choice)],(100,300)),(100,50))
+            screen.blit(transform.flip(transform.scale(selectstand[char.index(player_2_choice)],(100,300)),1,0),(600,50))
             screen.blit(startbutton,(400-50,300-50-100))
             if Rect(350,250-100,100,100).collidepoint((mx,my)):
                 screen.blit(transform.scale(startbutton,(150,150)),(400-75,300-50-100-25))
                 if mb[0]==1: #once the player clicks the start button;
-                    p1=eval(player1) #this converts a string (player1) into a variable
-                    p2=eval(player2) #it makes the players sprite= to the appropriate character sprites
+                    p1=eval(player_1_choice) #this converts a string (player_1_choice) into a variable
+                    p2=eval(player_2_choice) #it makes the players sprite= to the appropriate character sprites
                     page="stage" #page turns into the stage page next
             screen.blit(ipics[1][0],(330,540)) #go back button code below
             if Rect(330,540,153,35).collidepoint((mx,my)):
                 screen.blit(ipics[1][1],(330,540))
                 if mb[0]==1:
                     page="frontpage" 
-                    player1="none"
-                    player2="none"
+                    player_1_choice="none"
+                    player_2_choice="none"
                     break
 
 #Stage page code below
