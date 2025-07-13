@@ -77,7 +77,7 @@ aura=[image.load("Effects\\aura\\aura"+str(i)+".png") for i in range(1,11)]
 
 ######## Character Selection #######
 
-p1=ichigo[:]
+player_1=ichigo[:]
 p2=naruto[:]
 
 
@@ -92,7 +92,7 @@ loopCount = 0 # A counter that increases by one every loop
 p1ground=True  # status of whether or not player 1 is touching ground or not
 p1x,p1y=200,300 # starting position of player 1
 p1direct='Right' # direction of player 1
-p1sprite=p1[0][0] # this variable holds the sprite image of player 1
+p1sprite=player_1[0][0] # this variable holds the sprite image of player 1
 # Below are counters that keep track of the position in a list of a certain type of sprite, example: walking,jumping
 p1wc=0  # walk
 p1sc=0  # stand
@@ -134,12 +134,10 @@ p2safe=0 # Keeps track of time invincible
 p2protect=False # Keeps track if you are invincible or not
 
 
-ac=0 #position for the chakra recovering aura, used by both players
-######################### MAPS LOADING ###########################
-map1=image.load("map"+str(randint(1,5))+"p2.jpg")
-backg=image.load("map1p2.jpg")
-maps=[image.load("map"+str(i+1)+"p1.png") for i in range(5)]
-mapsrect=[[Rect(0,160,350,50),Rect(0,160,350,50),Rect(515,160,285,50),Rect(0,364,523,50),Rect(-100,550,1000,50)],
+ac=0 # Position for the chakra recovering aura, used by both players
+######################### STAGE LOADING ###########################
+stages = [image.load("stage"+str(i+1)+".png") for i in range(5)]
+stage_hitboxes = [[Rect(0,160,350,50),Rect(0,160,350,50),Rect(515,160,285,50),Rect(0,364,523,50),Rect(-100,550,1000,50)],
           [Rect(200,105,510,40),Rect(90,380,610,40)],
           [Rect(0,550,800,40)],
           [Rect(0,530,800,40),Rect(170,238,460,40)],
@@ -201,7 +199,7 @@ startbutton=image.load("menu\\startbutton.png")
 
 
 def playerselect(): #player select page
-    global page,player_1_choice,player_2_choice,p1,p2
+    global page,player_1_choice,player_2_choice,player_1,p2
     screen.blit(selectback,(0,0)) #draws back
     if player_1_choice=="none": #once the first player is not choosen
         for i in range(5): #it goes through 5 numbers and blits image best on a factor of those number
@@ -258,7 +256,7 @@ def playerselect(): #player select page
             if Rect(350,250-100,100,100).collidepoint((mx,my)):
                 screen.blit(transform.scale(startbutton,(150,150)),(400-75,300-50-100-25))
                 if mb[0]==1: #once the player clicks the start button;
-                    p1=eval(player_1_choice) #this converts a string (player_1_choice) into a variable
+                    player_1=eval(player_1_choice) #this converts a string (player_1_choice) into a variable
                     p2=eval(player_2_choice) #it makes the players sprite= to the appropriate character sprites
                     page="stage" #page turns into the stage page next
             screen.blit(ipics[1][0],(330,540)) #go back button code below
@@ -273,19 +271,19 @@ def playerselect(): #player select page
 #Stage page code below
 stageback=image.load("menu\\stageback.jpg") #background image of stage page
 def stage():
-    global page, platforms, map1, start
+    global page, platforms, selected_stage, start
     screen.blit(stageback,(0,0)) #draws the stage
     for i in range(5):
-        screen.blit(transform.scale(maps[i],(120,90)),(40+i*150,500)) #draws the 5 maps appropriatly
+        screen.blit(transform.scale(stages[i],(120,90)),(40+i*150,500)) #draws the 5 stages appropriatly
         if Rect(40+i*150,500,120,90).collidepoint(mx,my): #if mouse goes over it 
-            screen.blit(transform.scale(maps[i],(120,90)),(40+i*150,500)) #it draws a bigger picture of map
+            screen.blit(transform.scale(stages[i],(120,90)),(40+i*150,500)) #it draws a bigger picture of map
             draw.rect(screen,(255,0,0),(40+i*150,500,120,90),1) #and highlights it
-            screen.blit(transform.scale(maps[i],(600,400)),(100,0))
+            screen.blit(transform.scale(stages[i],(600,400)),(100,0))
             
             if mb[0]==1:
                 start=True #the actual game starts once this status is true
-                platforms=mapsrect[i] #it sets the platforms into the appropriate map platforms
-                map1=maps[i] #the middle ground is also set
+                platforms=stage_hitboxes[i] #it sets the platforms into the appropriate map platforms
+                selected_stage=stages[i] #the middle ground is also set
 
 ####### BELOW IS A PAGE FOR THE ENDING and activates
                 #once a person has died
@@ -326,7 +324,7 @@ def platform(platforms):
     #the velocity of y is turned to 0
     for i in range(len(platforms)):
         if platforms[i].collidepoint(p1x+p1sprite.get_width()/2,p1y+p1sprite.get_height()) and p1vely<=0 and p1ground==False:
-            p1y=platforms[i].y-p1[0][0].get_height()
+            p1y=platforms[i].y-player_1[0][0].get_height()
             p1ground=True
             p1vely=0
             p1djump=0
@@ -447,15 +445,14 @@ def health():
     draw.rect(screen,(0,90,255),(801-3*p2chakra,20,3*p2chakra,20))
     draw.rect(screen,(0,0,0),(801-3*p2chakra,20,3*p2chakra,20),1)
 
-map1=image.load("map1p1.png")
-map2=image.load("map"+str(randint(1,5))+"p2.jpg")
+background=image.load("background" + str(randint(1,5)) + ".jpg")
 
-#function that draws a background
-def back():
-    #using an Algorithm created by ME (Anas Ahmed), this moves the back-background map so the game looks 3 dimensional
-    screen.blit(map2,(0,(-p1y-p2y-map2.get_height())/8))
-    #this displays the background over it
-    screen.blit(map1,(0,0))
+# Function that draws the stage and background
+def draw_environment():
+    # Using an Algorithm created by Anas Ahmed, this moves the background map so the game looks 3 dimensional
+    screen.blit(background,(0,(-p1y-p2y-background.get_height())/8))
+    # This displays the background over it
+    screen.blit(selected_stage,(0,0))
     
     
 #The functions below adds velocity to each players y value, if the ground is false, meaning they are in the air
@@ -487,15 +484,15 @@ def loopcounter():
 
     #this is repeated for all he counter, each with their own preferences
     if loopCount % 10 == 0:
-        p1wc = (p1wc + 1) % len(p1[1])                    
+        p1wc = (p1wc + 1) % len(player_1[1])                    
     if loopCount % 10 == 0:
-        p1sc= (p1sc + 1) % len(p1[0])        
+        p1sc= (p1sc + 1) % len(player_1[0])        
     if loopCount % 3 == 0:
-        p1cc= (p1cc + 1) % len(p1[6])
+        p1cc= (p1cc + 1) % len(player_1[6])
     if loopCount % 3 == 0:
-        p1hc= (p1hc + 1) % len(p1[7])
+        p1hc= (p1hc + 1) % len(player_1[7])
     if loopCount % 3 == 0:
-        p1shc= (p1shc + 1) % len(p1[4])
+        p1shc= (p1shc + 1) % len(player_1[4])
 
     
     if loopCount % 10 == 0:
@@ -553,15 +550,15 @@ def falls():
         if loopCount % 6 == 0:
             p1fallcount= (p1fallcount+ 1)
         #once it hits the last image
-        if p1fallcount==len(p1[5]):
+        if p1fallcount==len(player_1[5]):
             #it is turned into False
             p1fallstatus=False
             #the counter is reset
             p1fallcount=0
         #it sets the player sprite to be a fall sprite based on player direction
         if p2direct=="Left":
-            p1sprite=p1[5][p1fallcount]
-        else:p1sprite=transform.flip(p1[5][p1fallcount],1,0)
+            p1sprite=player_1[5][p1fallcount]
+        else:p1sprite=transform.flip(player_1[5][p1fallcount],1,0)
 
     #same for player 2
     elif p2fallstatus==True:
@@ -600,19 +597,19 @@ def invincibility():
 #real time
         
 def special():
-    if p1==naruto or p1==ninetail:
+    if player_1==naruto or player_1==ninetail:
         narutos1p1()
         narutos2p1()
-    elif p1==gaara:
+    elif player_1==gaara:
         gaaras1p1()
         gaaras2p1()
-    elif p1==itachi:
+    elif player_1==itachi:
         itachis1p1()
         itachis2p1()
-    elif p1==ichigo or p1==bankai:
+    elif player_1==ichigo or player_1==bankai:
         ichigos1p1()
         ichigos2p1()
-    elif p1==link:
+    elif player_1==link:
         links1p1()
         links2p1()
     
@@ -640,7 +637,7 @@ itachis1part2=[image.load("itachiS1\\itachi"+str(x)+".png") for x in range(1,21)
 itachis1p1special=False #status to indicate if special is running or not
 itachis1p1count=0 #keeps count of sprite position in list
 itachis1p1count2=0 #keeps count of sprite position in other list
-p1tempx,p1tempy=0,0 #variables to hold p1 position so he does not move while he
+p1tempx,p1tempy=0,0 #variables to hold player_1 position so he does not move while he
 #uses attack
 itachis1p1dm=10 #distance the fire is away from player
 
@@ -662,7 +659,7 @@ def itachis1p1():
         p1x,p1y=p1tempx,p1tempy #player 1 position is locked to when the player started attack
         p1vely=0 #velocity is reset
 
-        #if p1 is facing left
+        #if player_1 is facing left
         if p1direct=="Left":
             #it calculates the picture to display, the rect of fireball,
             #it is broken down into simpler variables to keep things clean
@@ -771,7 +768,7 @@ def itachis2p1():
         p1chakra-=40
         for i in range(len(itachis2part1)):
             for j in range(3): 
-                back() #draws back / health
+                draw_environment() #draws back / health
                 health()
                 if p1direct=="Left": #draws the player using hand signs
                     screen.blit(transform.flip(itachis2part1[i],1,0),(p1x,p1y))
@@ -802,7 +799,7 @@ def itachis2p2():
         p2chakra-=50
         for i in range(len(itachis2part1)):
             for j in range(3):
-                back()
+                draw_environment()
                 health()
                 if p2direct=="Left":
                     screen.blit(transform.flip(itachis2part1[i],1,0),(p2x,p2y))
@@ -819,7 +816,7 @@ def itachis2p2():
                 health()
                 screen.blit(itachis2part2[i%len(itachis2part2)],(370,300))
                 screen.blit(cross,(400,300))
-                screen.blit(transform.flip(p1[4][j%2],1,0),(410,300))
+                screen.blit(transform.flip(player_1[4][j%2],1,0),(410,300))
                 draw.line(screen,(255,255,255),(0,375),(800,375))
                 display.flip()
                 p1health-=0.08
@@ -831,7 +828,7 @@ def itachis2p2():
 
 #naruto is turned into a demon fox which moves alot faster and hurts players if it touches them
 narutos1p1special=False #special status
-narutos1p1temp=[] #container for p1 sprites
+narutos1p1temp=[] #container for player_1 sprites
 narutos1p1counter=0 #counter that acts as a time limit
 #below are all sprites for the ninetail
 ninetail=[[image.load("narutoS1\\ninetail"+str(i)+".png") for i in range(1,8)],#Stand #
@@ -844,12 +841,12 @@ ninetail=[[image.load("narutoS1\\ninetail"+str(i)+".png") for i in range(1,8)],#
          [image.load("narutoS1\\ninetail"+str(i)+".png") for i in range(38,46)]]#hardattack
 
 def narutos1p1():
-    global narutos1p1temp,p1,narutos1p1special,narutos1p1counter
+    global narutos1p1temp,player_1,narutos1p1special,narutos1p1counter
     global p1x,p2health,p1sc,p1wc,p1jump,p1cc,p1hc,p1shc,p2fallstatus,p1chakra
     if key.get_pressed()[K_u] and narutos1p1special==False and p1chakra>=40: 
         p1chakra-=40 
-        narutos1p1temp=p1[:] #the temp variable holds all the player sprites before they are changed
-        p1=ninetail[:] #all of player 1 sprites are replaced with ninetail sprites
+        narutos1p1temp=player_1[:] #the temp variable holds all the player sprites before they are changed
+        player_1=ninetail[:] #all of player 1 sprites are replaced with ninetail sprites
         narutos1p1special=True # special is on
     if narutos1p1special==True:
         narutos1p1counter+=1 #counter increases
@@ -864,7 +861,7 @@ def narutos1p1():
             p2fallstatus=True
         if narutos1p1counter==150: #once it reaches limit 
             narutos1p1counter=0 #everything is reset
-            p1=narutos1p1temp[:] # the pl sprites are then turned back into the original sprites that were in it
+            player_1=narutos1p1temp[:] # the pl sprites are then turned back into the original sprites that were in it
             narutos1p1special=False
             p1sc,p1wc,p1jump,p1cc,p1hc,p1shc=0,0,0,0,0,0 #all counter are reset, so p1sprite position wont go out of range
 
@@ -1072,12 +1069,12 @@ ichigos1p1special=False
 ichigos1p1temp=[]
 ichigos1p1counter=0
 def ichigos1p1():
-    global ichigos1p1temp,p1,ichigos1p1special,ichigos1p1counter
+    global ichigos1p1temp,player_1,ichigos1p1special,ichigos1p1counter
     global p1x,p2health,p1sc,p1wc,p1jump,p1cc,p1hc,p1shc,p2fallstatus,p1chakra
     if key.get_pressed()[K_u] and ichigos1p1special==False and p1chakra>=30:
         p1chakra-=40
-        ichigos1p1temp=p1[:]
-        p1=bankai[:]
+        ichigos1p1temp=player_1[:]
+        player_1=bankai[:]
         ichigos1p1special=True
     if ichigos1p1special==True:
         ichigos1p1counter+=1
@@ -1090,7 +1087,7 @@ def ichigos1p1():
             p2fallstatus=True
         if ichigos1p1counter==150:
             ichigos1p1counter=0
-            p1=ichigos1p1temp[:]
+            player_1=ichigos1p1temp[:]
             ichigos1p1special=False
             p1sc,p1wc,p1jump,p1cc,p1hc,p1shc=0,0,0,0,0,0
 
@@ -1719,8 +1716,8 @@ while running:
         eval(page)()
         display.flip()
     else:
-        back()
-        screen.blit(p1sprite,(p1x,p1y-p1sprite.get_height()+p1[0][0].get_height()))
+        draw_environment()
+        screen.blit(p1sprite,(p1x,p1y-p1sprite.get_height()+player_1[0][0].get_height()))
         screen.blit(p2sprite,(p2x,p2y-p2sprite.get_height()+p2[0][0].get_height()))
         
         keys = list(key.get_pressed())
@@ -1731,7 +1728,7 @@ while running:
                 if p1ground==True:      #On ground, character walk
                     p1x+=10
                     p1direct="Right"
-                    p1sprite=p1[1][p1wc]
+                    p1sprite=player_1[1][p1wc]
                 else:
                     p1x+=10             #In air, character float
                     p1direct="Right"
@@ -1741,23 +1738,23 @@ while running:
                 if p1ground==True:
                     p1x-=10
                     p1direct="Left"
-                    p1sprite=transform.flip(p1[1][p1wc],1,0)
+                    p1sprite=transform.flip(player_1[1][p1wc],1,0)
                 else:
                     p1x-=10
                     p1direct="Left"
                                 
             else:
                 if p1ground==True and not key.get_pressed()[K_UP]:        #Standing if character does nothing
-                    p1sprite=direction(p1[0][p1sc],p1direct)
+                    p1sprite=direction(player_1[0][p1sc],p1direct)
                     
             if key.get_pressed()[K_l] and p1ground==True:#L Key Blocking
-                p1sprite=direction(p1[2][0],p1direct)
+                p1sprite=direction(player_1[2][0],p1direct)
                 p1block=True
                     
             jumpanimation()
             if key.get_pressed()[K_w]:#Up Key
                 if p1ground==True:
-                    p1sprite=direction(p1[3][p1jump],p1direct)
+                    p1sprite=direction(player_1[3][p1jump],p1direct)
                     p1djump=1
                     p1vely=15           #Set velocity to 15
                     ground=False        #Character off the ground
@@ -1765,15 +1762,15 @@ while running:
                 if p1vely<0 and p1djump==1:     #Double Jump
                     p1vely=10
                     p1djump=2
-                    p1sprite=direction(p1[3][p1jump],p1direct)
+                    p1sprite=direction(player_1[3][p1jump],p1direct)
 
             if p1ground==False:
-                p1sprite=direction(p1[3][p1jump],p1direct) #Float animation
+                p1sprite=direction(player_1[3][p1jump],p1direct) #Float animation
                 
                 
             if key.get_pressed()[K_j]and key.get_pressed()[K_d]==False and key.get_pressed()[K_a]==False and key.get_pressed()[K_w]==False:  #Soft J key Can not move while attacking
                 
-                p1sprite=direction(p1[6][p1cc],p1direct)
+                p1sprite=direction(player_1[6][p1cc],p1direct)
                 if p1rect.colliderect(p2rect):
                     if p2block==False and p2protect==False: #If not blocking or invincible, opponent gets hurt
                         p2health-=0.2                
@@ -1788,7 +1785,7 @@ while running:
             else:p2softhurt=False
             
             if key.get_pressed()[K_k]and key.get_pressed()[K_d]==False and key.get_pressed()[K_a]==False and key.get_pressed()[K_w]==False:#Hard K Key Can not move while attacking
-                p1sprite=direction(p1[7][p1hc],p1direct)
+                p1sprite=direction(player_1[7][p1hc],p1direct)
                 if p1rect.colliderect(p2rect):
                     if p2block==False and p2protect==False:#If not blocking or invincible, opponent gets hurt
                         p2health-=.5                
@@ -1861,10 +1858,10 @@ while running:
                         p1health-=0.2
                         p1softhurt=True
                     if p2direct=="Right":
-                        p1sprite=p1[4][p1shc]
+                        p1sprite=player_1[4][p1shc]
                         p1x+=1
                     else:
-                        p1sprite=direction(p1[4][p1shc],"Right")
+                        p1sprite=direction(player_1[4][p1shc],"Right")
                         p1x-=1
                 else:p1softhurt=False
             else:p1softhurt=False
@@ -1887,7 +1884,7 @@ while running:
         p2rect=Rect(p2x,p2y,p2sprite.get_width(),p2sprite.get_height())
         
         if p1softhurt==True:
-            p1sprite=transform.flip(direction(p1[4][p1shc],p2direct),1,0)
+            p1sprite=transform.flip(direction(player_1[4][p1shc],p2direct),1,0)
         if p2softhurt==True:
             p2sprite=transform.flip(direction(p2[4][p2shc],p1direct),1,0)
         groundcheck()
