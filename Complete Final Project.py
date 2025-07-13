@@ -285,10 +285,10 @@ def stage():
                 platforms=stage_hitboxes[i] #it sets the platforms into the appropriate map platforms
                 selected_stage=stages[i] #the middle ground is also set
 
-####### BELOW IS A PAGE FOR THE ENDING and activates once a person has died
 
 
 
+# Below is the page for the end screen which activates once a person has died
 def end():
     global page,running
     screen.blit(transform.scale(selectback,(1200,900)),(0,0))
@@ -308,10 +308,6 @@ def end():
     if Rect(300, 400, quit_button_image.get_width(), quit_button_image.get_height()).collidepoint(mx,my) and mb[0]==1:
         running=False
         
-
-    
-
-                
 #list of platform rects in a stage
 
 
@@ -335,7 +331,7 @@ def platform(platforms):
             break
         else:
             is_player_1_grounded=False
-    #it does the same thing for player 2
+    # Same thing for player 2
     for i in range(len(platforms)):
         if platforms[i].collidepoint(p2x+p2sprite.get_width()/2,p2y+p2sprite.get_height()) and p2vely<=0 and is_player_2_grounded==False:
             p2y=platforms[i].y-player_2[0][0].get_height()
@@ -397,19 +393,15 @@ def mapsides():
     if p2x>800:p2x=-50
     elif p2x<-50:p2x=800
 
-#the direction function is used to make other code work easily and cleanly
-#it flips image based on direction
+# The direction function is used to make other code work easily and cleanly
+# It flips the image based on direction
 def direction(x,direction):
     if direction=="Right":
         return x
     else:
         return transform.flip(x,1,0)
-
-
-        
+    
 #The health function deals with the health and chakra of players
-
-
 def health():
     global p1health,p2health,p1y,p2y
     global p1chakra,p2chakra
@@ -576,17 +568,18 @@ def falls():
         if player_1_direction=="Left":
             p2sprite=player_2[5][p2fallcount]
         else:p2sprite=transform.flip(player_2[5][p2fallcount],1,0)
-#the function below indicates when invincibility is turned on so the other guy
-#cannot hurt the player once their down
+
+# The function below indicates when invincibility is turned on so the other guy
+# cannot hurt the player once they're down
 def invincibility():
     global p1safe,p2safe,p1protect,p2protect
-    if p1safe>0:        #if the time is not up yet
+    if p1safe>0:        # If the time is not up yet
         p1safe-=1
-        p1protect=True  #player is still invincible
+        p1protect=True  # the player is still invincible
     else:
         p1protect=False
         
-    if p2safe>0:        #same
+    if p2safe>0:
         p2safe-=1
         p2protect=True
     else:
@@ -1057,10 +1050,8 @@ def narutos2p2():
         if narutos2p2counter>60:
             narutos2p2special=False
 
-#####################ichigo Special#############################
-#this exactly the same as the ninetail function above
-#there for doesnt need to be commented again
-#the variables and images are changed
+##################### Ichigo Special #############################
+# Steroid special that puts Ichigo into Bankai form
 bankai=[[image.load("assets\\ichigoS1\\bankai"+str(i)+".png") for i in range(1,5)],#Stand
         [image.load("assets\\ichigoS1\\bankai"+str(i)+".png") for i in range(5,13)],#Walk
         [image.load("assets\\ichigoS1\\bankai"+str(i)+".png") for i in range(5,13)],#run
@@ -1095,7 +1086,7 @@ def ichigos1p1():
             ichigos1p1special=False
             p1sc,p1wc,p1jump,p1cc,p1hc,p1shc=0,0,0,0,0,0
 
-#Same for player 2
+# Same for player 2
 ichigos1p2special=False
 ichigos1p2temp=[]
 ichigos1p2counter=0
@@ -1130,7 +1121,7 @@ ichigos2p1special=False
 p1tempx,p1tempy=0,0
 p1tempdirect=player_1_direction
 
-#the special 2 for ichigo sends out a sword blast wave
+# The special 2 for Ichigo sends out a sword blast wave from his Zanpakuto
 def ichigos2p1():
     global ichigos2p1counter,ichigos2p1special,p1tempx,p1tempy
     global p1sprite,p1tempdirect,player_1_direction,p1x,p1y,p2fallstatus,p1chakra,p2health
@@ -1163,7 +1154,7 @@ def ichigos2p1():
         if p1tempx<-50 or p1tempx>850: #also turns status off once it goes out of map
             ichigos2p1special=False
 
-#same attack for player 2
+# Same attack for player 2
 ichigos2p2counter=0
 ichigos2p2special=False
 p2tempx,p2tempy=0,0
@@ -1450,7 +1441,8 @@ links2p2y2=p2y-linkBomb[links2p2count2].get_height()-0
 links2p2tempdirect="Left"
 linkp2Bcount=0
 links2p2tempx2="Left"
-#same for player 2
+
+# Same for player 2
 
 def links2p2():
     global links2p2special,links2p2count,links2p2count2,p2sprite,sp,loopcount,p1rect,p1health,p2x,p2y,p2vely,p1x,links2p2x2,linkS2,linkBomb
@@ -1557,7 +1549,7 @@ def links2p2():
         pic=linkExplosion[linkp2Bcount%(len(linkExplosion))]                    
         if linkp2Bcount%len(linkExplosion)==4:
             links2p2special=False
-########################################### GaaraSpecials ########################################
+########################################### Gaara Specials ########################################
 
 gaaraS1=[image.load("assets\\gaaraS1\\gaaraS1"+str(i)+".png") for i in range(1,22)]
 gaaraCoffin=[image.load("assets\\gaaraS1\\gaaraCoffin"+str(i)+".png") for i in range(1,18)]
@@ -1567,7 +1559,7 @@ gaaras1p1special=False
 gaaras1p1tempdirect="Left"
 p1tempx,p1tempy
 
-def gaaras1p1(): #Gaara's Sand Coffin Attack
+def gaaras1p1(): # Gaara's Sand Coffin Attack
     global gaaras1p1special,gaaras1p1count,p1sprite,p2health,player_1_direction,p2sprite,p1chakra
     global p1x,p1y,p1tempx,p1tempy,gaaras1p1tempdirect,p1vely
     if gaaras1p1special!=True and key.get_pressed()[K_u] and p1chakra>30:
@@ -1596,7 +1588,7 @@ gaaras1p2special=False
 gaaras1p2tempdirect="Left"
 p2tempx,p2tempy
 
-def gaaras1p2(): #Same for Player 2
+def gaaras1p2(): # Same for Player 2
     global gaaras1p2special,gaaras1p2count,p2sprite,p1health,player_2_direction,p1sprite
     global p2x,p2y,p2tempx,p2tempy,gaaras1p2tempdirect,p2vely
     if gaaras1p2special!=True and key.get_pressed()[K_KP4]:
@@ -1626,7 +1618,7 @@ p1gspecial=False
 
 p1gcount=0
 p1bx,p1by=650,150
-def gaaras2p1():#Gaara's Ichibi Transformation Chakra Blast of DOOM!
+def gaaras2p1(): # Gaara's Ichibi Transformation Chakra Blast of DOOM!
     global p1gspecial, p1bx,p1by,p1gcount,p2health,p2fallstatus,p2x,p1chakra
     if p1gspecial==False and key.get_pressed()[K_i] and p1chakra>50:
         p1chakra-=50
@@ -1665,7 +1657,7 @@ def gaaras2p1():#Gaara's Ichibi Transformation Chakra Blast of DOOM!
         elif p1gcount==65:
             p1gspecial=True
 
-#same for player 2
+# Same for player 2
 p2gspecial=False
 p2gcount=0
 p2bx,p2by=650,150
@@ -1882,7 +1874,7 @@ while running:
                     else:
                         p1x-=4
             
-        ########################## Execute all fuctions ###################################
+        ########################## Execute all functions ###################################
         platform(platforms)
         p1rect=Rect(p1x,p1y,p1sprite.get_width(),p1sprite.get_height())
         p2rect=Rect(p2x,p2y,p2sprite.get_width(),p2sprite.get_height())
