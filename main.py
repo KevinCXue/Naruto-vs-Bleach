@@ -94,7 +94,7 @@ loopCount = 0 # A counter that increases by one every loop
 
 
 ####    PLAYER 1 VARIABLES    ####
-is_player_1_grounded=True  # status of whether or not player 1 is touching ground or not
+# is_player_1_grounded=True  # status of whether or not player 1 is touching ground or not
 p1x,p1y=200,300 # starting position of player 1
 player_1_direction='Right' # direction of player 1
 p1sprite=player_1[0][0] # this variable holds the sprite image of player 1
@@ -320,22 +320,22 @@ def end():
 # This function takes in a list of rectangle and checks whether a player has landed on it
 #and then makes ground status true, sets velocity to 0, and other changes
 
-def platform(platforms):
-    global p1x,p1y,p1djump,p1vely,is_player_1_grounded
+def platform(platforms, player1):
+    global p1x,p1y,p1djump,p1vely
     global p2x,p2y,p2djump,p2vely,is_player_2_grounded
 
     #Goes through the list of rectangles, checks if bottom of a sprite collides with each rect
     #if it does it sets ground true, and player position so it is on top of platform, and double jump stage is reset to 0
     #the velocity of y is turned to 0
     for i in range(len(platforms)):
-        if platforms[i].collidepoint(p1x+p1sprite.get_width()/2,p1y+p1sprite.get_height()) and p1vely<=0 and is_player_1_grounded==False:
+        if platforms[i].collidepoint(p1x+p1sprite.get_width()/2,p1y+p1sprite.get_height()) and p1vely<=0 and not player1.is_grounded:
             p1y=platforms[i].y-player_1[0][0].get_height()
-            is_player_1_grounded=True
+            player1.is_grounded=True
             p1vely=0
             p1djump=0
             break
         else:
-            is_player_1_grounded=False
+            player1.is_grounded=False
     # Same thing for player 2
     for i in range(len(platforms)):
         if platforms[i].collidepoint(p2x+p2sprite.get_width()/2,p2y+p2sprite.get_height()) and p2vely<=0 and is_player_2_grounded==False:
@@ -458,12 +458,12 @@ def draw_environment():
     
 #The functions below adds velocity to each players y value, if the ground is false, meaning they are in the air
 #The velocity is increased 
-def groundcheck():
+def groundcheck(player1):
         global p1vely,p1y
         global p2vely,p2y
         
         p1y-=p1vely
-        if is_player_1_grounded==False:p1vely-=0.5
+        if not player1.is_grounded:p1vely-=0.5
         p2y-=p2vely
         if is_player_2_grounded==False:p2vely-=0.5
 
@@ -1726,8 +1726,8 @@ while running:
         
     ########################## Player 1 #####################################
         if p1softhurt==False and p1fallstatus==False:   # If character is not hurt or fallen, character can operate
-            if key.get_pressed()[K_d]:               #Right Key A Key
-                if is_player_1_grounded==True:      #On ground, character walk
+            if key.get_pressed()[K_d]:               # Right Key A Key
+                if player_1_obj.is_grounded:      # On the ground, character walk
                     p1x+=10
                     player_1_direction="Right"
                     p1sprite=player_1[1][p1wc]
@@ -1737,7 +1737,7 @@ while running:
                     
                 
             elif key.get_pressed()[K_a]:              #Left Key D Key
-                if is_player_1_grounded==True:
+                if player_1_obj.is_grounded:
                     p1x-=10
                     player_1_direction="Left"
                     p1sprite=transform.flip(player_1[1][p1wc],1,0)
@@ -1746,16 +1746,16 @@ while running:
                     player_1_direction="Left"
                                 
             else:
-                if is_player_1_grounded==True and not key.get_pressed()[K_UP]:        #Standing if character does nothing
+                if player_1_obj.is_grounded and not key.get_pressed()[K_UP]:        # Standing if character does nothing
                     p1sprite=direction(player_1[0][p1sc],player_1_direction)
                     
-            if key.get_pressed()[K_l] and is_player_1_grounded==True:#L Key Blocking
+            if key.get_pressed()[K_l] and player_1_obj.is_grounded:# L Key Blocking
                 p1sprite=direction(player_1[2][0],player_1_direction)
                 p1block=True
                     
             jumpanimation()
             if key.get_pressed()[K_w]:#Up Key
-                if is_player_1_grounded==True:
+                if player_1_obj.is_grounded:
                     p1sprite=direction(player_1[3][p1jump],player_1_direction)
                     p1djump=1
                     p1vely=15           #Set velocity to 15
@@ -1766,7 +1766,7 @@ while running:
                     p1djump=2
                     p1sprite=direction(player_1[3][p1jump],player_1_direction)
 
-            if is_player_1_grounded==False:
+            if not player_1_obj.is_grounded:
                 p1sprite=direction(player_1[3][p1jump],player_1_direction) #Float animation
                 
                 
@@ -1798,7 +1798,7 @@ while running:
                     else:
                         p2x-=1
                         
-            if key.get_pressed()[K_s] and key.get_pressed()[K_a]==False and key.get_pressed()[K_d]==False and is_player_1_grounded==True:#Chakra Charge S Key
+            if key.get_pressed()[K_s] and key.get_pressed()[K_a]==False and key.get_pressed()[K_d]==False and player_1_obj.is_grounded: # Chakra Charge S Key
                 p1chakra+=.5 
                 screen.blit(aura[ac],(p1x-25,p1y-30))
             
@@ -1881,7 +1881,7 @@ while running:
                         p1x-=4
             
         ########################## Execute all functions ###################################
-        platform(platforms)
+        platform(platforms, player_1_obj)
         p1rect=Rect(p1x,p1y,p1sprite.get_width(),p1sprite.get_height())
         p2rect=Rect(p2x,p2y,p2sprite.get_width(),p2sprite.get_height())
         
@@ -1889,7 +1889,7 @@ while running:
             p1sprite=transform.flip(direction(player_1[4][p1shc],player_2_direction),1,0)
         if p2softhurt==True:
             p2sprite=transform.flip(direction(player_2[4][p2shc],player_1_direction),1,0)
-        groundcheck()
+        groundcheck(player_1_obj)
         
         loopcounter()
         mapsides()
