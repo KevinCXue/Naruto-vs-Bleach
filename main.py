@@ -749,10 +749,10 @@ def itachis1p2():
         if itachis1p2count2==19:
             itachis1p2special=False
 
-#for itachi special 2, itachi does an illusion move, this is not real time, meaning
-#that everything freezes and itachi plays an animation of his illusion move
+# For Itachi's special 2, Itachi traps his opponent in an genjutsu.
+# Everything freezes and Itachi stabs his opponent over time
 
-#images for the animation below are loaded
+# Images for the animation below are loaded
 itachis2part1=[image.load("assets\\itachiS2\\Itachi"+str(i)+".png") for i in range(1,7)]
 itachis2part2=[image.load("assets\\itachiS2\\ItachiS"+str(i)+".png") for i in range(1,15)]
 itachifront=transform.scale(image.load("assets\\itachiS2\\Itachifront.png"),(1000,300))
@@ -760,7 +760,7 @@ itachiback=image.load("assets\\itachiS2\\ItachiBack.jpg")
 cross=image.load("assets\\itachiS2\\cross.png")
 
 def itachis2p1():
-    global p2health,p1chakra
+    global p2health, p1chakra
     if key.get_pressed()[K_i] and p1chakra>=50: #starts when the condition is met
         p1chakra-=40
         for i in range(len(itachis2part1)):
@@ -789,7 +789,7 @@ def itachis2p1():
                 display.flip()
                 p2health-=0.08 #health is decreased slowly
 
-#below is the same attack for player 2 with player 2 variables
+# Below is the same attack for player 2 with player 2 variables
 def itachis2p2():
     global p1health,p2chakra
     if key.get_pressed()[K_KP5] and p2chakra>=50:
@@ -819,15 +819,15 @@ def itachis2p2():
                 p1health-=0.08
 
     
-############ naruto special ########################
+############ Naruto special ########################
 
-#this is a transformation attack by naruto
+# This is a steroid special naruto
 
-#naruto is turned into a demon fox which moves alot faster and hurts players if it touches them
-narutos1p1special=False #special status
-narutos1p1temp=[] #container for player_1 sprites
-narutos1p1counter=0 #counter that acts as a time limit
-#below are all sprites for the ninetail
+# Naruto is turns into a demon fox which moves alot faster and hurts players if it touches them
+narutos1p1special=False # Special status
+narutos1p1temp=[] # Container for player_1 sprites
+narutos1p1counter=0 # Counter that acts as a time limit
+# Below are all sprites for the ninetail
 ninetail=[[image.load("assets\\narutoS1\\ninetail"+str(i)+".png") for i in range(1,8)],#Stand #
          [image.load("assets\\narutoS1\\ninetail"+str(i)+".png") for i in range(8,15)],#Walk
          [image.load("assets\\narutoS1\\ninetail"+str(i)+".png") for i in range(8,15)],#run
@@ -1699,9 +1699,7 @@ def gaaras2p2():
         elif p2gcount==65:
             p2gspecial=True
 
-
-
-            
+           
 while running:
     for evnt in event.get():          
         if evnt.type == QUIT:
