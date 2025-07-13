@@ -152,8 +152,8 @@ stage_hitboxes = [[Rect(0,160,350,50),Rect(0,160,350,50),Rect(515,160,285,50),Re
 start=False     #Determines if the game is started or not
 page="frontpage" #Determines the page to show
 
-fpics=[image.load("menu\\main.jpg"), #contain pictures for frontpage/firstpage
-       [image.load("menu\\buttons"+str(i)+".png") for i in range(1,5)]]
+fpics=[image.load("assets\\menu\\main.jpg"), #contain pictures for frontpage/firstpage
+       [image.load("assets\\menu\\buttons"+str(i)+".png") for i in range(1,5)]]
 
 def frontpage():#once this function is called
     global page
@@ -174,8 +174,8 @@ def frontpage():#once this function is called
     else: screen.blit(fpics[1][2],(300,300))
     
 #ipics contains images for the instruction page
-ipics=[image.load("menu\\instruction.png"),
-   [image.load("menu\\goback"+str(i)+".png") for i in range(1,3)]] #go back buttons
+ipics=[image.load("assets\\menu\\instruction.png"),
+   [image.load("assets\\menu\\goback"+str(i)+".png") for i in range(1,3)]] #go back buttons
 
 def instruction():
     global page
@@ -194,8 +194,8 @@ playable_characters=["naruto","link","itachi","gaara","ichigo"] # List of charac
 #loads images below into variables
 selectpic= [image.load("assets\\pic\\"+playable_characters[i]+"_pic.png") for i in range(5)]#picture box
 selectstand= [image.load("assets\\pic\\"+playable_characters[i]+"_stance.png") for i in range(5)]#cool stance
-selectback=image.load("menu\\select2.jpg")
-startbutton=image.load("menu\\startbutton.png")
+selectback=image.load("assets\\menu\\select.jpg")
+startbutton=image.load("assets\\menu\\startbutton.png")
 
 
 def playerselect(): #player select page
@@ -269,7 +269,7 @@ def playerselect(): #player select page
                     break
 
 #Stage page code below
-stageback=image.load("menu\\stageback.jpg") #background image of stage page
+stageback=image.load("assets\\menu\\stageback.jpg") #background image of stage page
 def stage():
     global page, platforms, selected_stage, start
     screen.blit(stageback,(0,0)) #draws the stage
