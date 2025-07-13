@@ -285,25 +285,29 @@ def stage():
                 platforms=stage_hitboxes[i] #it sets the platforms into the appropriate map platforms
                 selected_stage=stages[i] #the middle ground is also set
 
-####### BELOW IS A PAGE FOR THE ENDING and activates
-                #once a person has died
-win= [image.load("win"+str(i)+".png") for i in range(1,7)]
+####### BELOW IS A PAGE FOR THE ENDING and activates once a person has died
+
+
+
 def end():
     global page,running
     screen.blit(transform.scale(selectback,(1200,900)),(0,0))
     if p1health>p2health:
-        screen.blit(win[0],(300,100+100))
+        screen.blit(image.load("assets\\end\\player1win.png"),(300,200))
     else:
-        screen.blit(win[3],(300,100+100))
+        screen.blit(image.load("assets\\end\\player2win.png"),(300,200))
 
             
+    play_again_button_image = image.load("assets\\end\\play_again.png")
+    quit_button_image = image.load("assets\\end\\quit.png")
+    screen.blit(play_again_button_image,(300,300))
+    if Rect(300, 300, play_again_button_image.get_width(), play_again_button_image.get_height()).collidepoint(mx,my) and mb[0]==1:  # TODO: do proper reset
+        page="frontpage"
+
+    screen.blit(quit_button_image,(300,400))
+    if Rect(300, 400, quit_button_image.get_width(), quit_button_image.get_height()).collidepoint(mx,my) and mb[0]==1:
+        running=False
         
-    if Rect(300,100+200,win[1].get_width(),win[1].get_height()).collidepoint(mx,my):
-        screen.blit(win[5],(300,100+200))
-        if mb[0]==1:
-            running=False
-    else:
-        screen.blit(win[2],(300,100+200))
 
     
 
