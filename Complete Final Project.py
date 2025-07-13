@@ -71,7 +71,7 @@ ichigo=[[image.load("ichigo\\ichigo"+str(i)+".png") for i in range(2,6)], # Stan
 
 
 # Sprites for Chakra Regen Aura
-aura=[image.load("Effects\\aura\\aura"+str(i)+".png") for i in range(1,11)]
+aura=[image.load("assets\\effects\\aura\\aura"+str(i)+".png") for i in range(1,11)]
 
 
 
@@ -192,8 +192,8 @@ def instruction():
 #The next bunch of code, contains variables for the character selection page
 playable_characters=["naruto","link","itachi","gaara","ichigo"] # List of characters
 #loads images below into variables
-selectpic= [image.load("pic\\"+playable_characters[i]+"pic.png") for i in range(5)]#picture box
-selectstand= [image.load("pic\\"+playable_characters[i]+"stance.png") for i in range(5)]#cool stance
+selectpic= [image.load("assets\\pic\\"+playable_characters[i]+"_pic.png") for i in range(5)]#picture box
+selectstand= [image.load("assets\\pic\\"+playable_characters[i]+"_stance.png") for i in range(5)]#cool stance
 selectback=image.load("menu\\select2.jpg")
 startbutton=image.load("menu\\startbutton.png")
 
@@ -350,7 +350,7 @@ def platform(platforms):
 #it draws a random food every random time between 1, 100 loops
 #if player goes over it he heals himself randomly from 0 to 25 health points
             
-foods=[image.load("foods\\food"+str(i)+".png") for i in range(1,15)] #list of food sprites
+foods=[image.load("assets\\foods\\food"+str(i)+".png") for i in range(1,15)] #list of food sprites
 #Below is a food counter that counts till hit a limit of when to pop a food in the field
 foodc=0
 #The food status states whether or not food is in the field
