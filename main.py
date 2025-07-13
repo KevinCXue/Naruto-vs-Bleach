@@ -1,12 +1,14 @@
 ###################### FINAL PROJECT BY: ANAS AHMED AND KEVIN XUE
-####################
-################## Platform Fighter Game
-################
-##############
 
-from pygame import*
-from random import*
-from math import*
+################## 2-D Platform Fighter Game
+
+from random import randint
+from math import hypot
+
+from pygame import Rect, display, draw, event, image, key, mouse, time, transform
+from pygame.locals import *
+
+from player import Player
 
 
 # Below is a 2d list that loads the character sprites 
@@ -79,6 +81,9 @@ aura=[image.load("assets\\effects\\aura\\aura"+str(i)+".png") for i in range(1,1
 
 player_1=ichigo[:]
 player_2=naruto[:]
+
+player_1_obj = Player()
+player_2_obj = Player()
 
 
 screen = display.set_mode((800, 600))
@@ -312,7 +317,7 @@ def end():
 
 
 
-#the function below, takes in a list of rectangle and checks wheather a player has landed on it
+# This function takes in a list of rectangle and checks whether a player has landed on it
 #and then makes ground status true, sets velocity to 0, and other changes
 
 def platform(platforms):
@@ -902,7 +907,10 @@ rassprite=[[image.load("assets\\narutoS2\\naruto"+str(i)+".png") for i in range(
 
 #the sprites are resized
 for i in range(len(rassprite)):
-    rassprite[i]=map(lambda x:transform.scale(x,(int(1.4*x.get_width()),int(1.4*x.get_height()))),rassprite[i])
+    rassprite[i] = [
+        transform.scale(x, (int(1.4 * x.get_width()), int(1.4 * x.get_height())))
+        for x in rassprite[i]
+    ]
 
 #amost same variables as previous special 
 narutos2p1special=False
