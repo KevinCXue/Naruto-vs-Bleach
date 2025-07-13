@@ -16,58 +16,58 @@ from math import*
 ########### CHARACTERS ###########
 
 # Naruto Uzumaki
-naruto=[[image.load("naruto\\naruto"+str(i)+".png") for i in range(1,7)], # Stand
-        [image.load("naruto\\naruto"+str(i)+".png") for i in range(7,13)], # Walk
-        [image.load("naruto\\naruto24.png")], # Block
-        [image.load("naruto\\naruto"+str(i)+".png") for i in range(13,17)], # Jump
-        [image.load("naruto\\naruto"+str(i)+".png") for i in range(17,19)], # Hurt Light
-        [image.load("naruto\\naruto"+str(i)+".png") for i in range(19,23)], # Hurt Hard
-        [image.load("naruto\\naruto"+str(i)+".png") for i in range(23,36)], # Soft Attack
-        [image.load("naruto\\naruto"+str(i)+".png") for i in range(36,40)]] # Hard Attack
+naruto=[[image.load("assets\\naruto\\naruto"+str(i)+".png") for i in range(1,7)], # Stand
+        [image.load("assets\\naruto\\naruto"+str(i)+".png") for i in range(7,13)], # Walk
+        [image.load("assets\\naruto\\naruto24.png")], # Block
+        [image.load("assets\\naruto\\naruto"+str(i)+".png") for i in range(13,17)], # Jump
+        [image.load("assets\\naruto\\naruto"+str(i)+".png") for i in range(17,19)], # Hurt Light
+        [image.load("assets\\naruto\\naruto"+str(i)+".png") for i in range(19,23)], # Hurt Hard
+        [image.load("assets\\naruto\\naruto"+str(i)+".png") for i in range(23,36)], # Soft Attack
+        [image.load("assets\\naruto\\naruto"+str(i)+".png") for i in range(36,40)]] # Hard Attack
 
 # The code below will resize each of the sprite for naruto appropriately since naruto sprites are the smallest
 for i in range(len(naruto)):
     naruto[i]=map(lambda x:transform.scale(x,(int(1.4*x.get_width()),int(1.4*x.get_height()))),naruto[i])
     
 # Link 
-link=[[image.load("link\\link"+str(i)+".png") for i in range(24,28)], # Stand
-      [image.load("link\\link"+str(i)+".png") for i in range(17,23)], # Walk
-      [image.load("link\\link"+str(i)+".png") for i in range(28,36)], # Run
-      [image.load("link\\link"+str(i)+".png") for i in range(36,40)], # Jump
-      [image.load("link\\link"+str(i)+".png") for i in range(23,25)], # Hurt Light
-      [image.load("link\\link"+str(i)+".png") for i in range(23,25)], # Hurt Hard
-      [image.load("link\\link"+str(i)+".png") for i in range(40,51)], # Soft Attack
-      [image.load("link\\link"+str(i)+".png") for i in range(51,56)]] # Hard Attack
+link=[[image.load("assets\\link\\link"+str(i)+".png") for i in range(24,28)], # Stand
+      [image.load("assets\\link\\link"+str(i)+".png") for i in range(17,23)], # Walk
+      [image.load("assets\\link\\link"+str(i)+".png") for i in range(28,36)], # Run
+      [image.load("assets\\link\\link"+str(i)+".png") for i in range(36,40)], # Jump
+      [image.load("assets\\link\\link"+str(i)+".png") for i in range(23,25)], # Hurt Light
+      [image.load("assets\\link\\link"+str(i)+".png") for i in range(23,25)], # Hurt Hard
+      [image.load("assets\\link\\link"+str(i)+".png") for i in range(40,51)], # Soft Attack
+      [image.load("assets\\link\\link"+str(i)+".png") for i in range(51,56)]] # Hard Attack
 
 # Itachi Uchiha
-itachi=[[image.load("itachi\\itachi"+str(i)+".png") for i in range(1,5)], # Stand
-        [image.load("itachi\\itachi"+str(i)+".png") for i in range(11,17)], # Walk
-        [image.load("itachi\\itachi21.png")], # Block
-        [image.load("itachi\\itachi"+str(i)+".png") for i in range(17,21)], # Jump
-        [image.load("itachi\\itachi"+str(i)+".png") for i in range(22,24)], # Hurt Light
-        [image.load("itachi\\itachi"+str(i)+".png") for i in range(24,28)], # Hurt Hard
-        [image.load("itachi\\itachi"+str(i)+".png") for i in range(28,41)], # Soft Attack
-        [transform.flip(image.load("itachi\\itachi"+str(i)+".png"),1,0) for i in range(41,45)]] # Hard Attack
+itachi=[[image.load("assets\\itachi\\itachi"+str(i)+".png") for i in range(1,5)], # Stand
+        [image.load("assets\\itachi\\itachi"+str(i)+".png") for i in range(11,17)], # Walk
+        [image.load("assets\\itachi\\itachi21.png")], # Block
+        [image.load("assets\\itachi\\itachi"+str(i)+".png") for i in range(17,21)], # Jump
+        [image.load("assets\\itachi\\itachi"+str(i)+".png") for i in range(22,24)], # Hurt Light
+        [image.load("assets\\itachi\\itachi"+str(i)+".png") for i in range(24,28)], # Hurt Hard
+        [image.load("assets\\itachi\\itachi"+str(i)+".png") for i in range(28,41)], # Soft Attack
+        [transform.flip(image.load("assets\\itachi\\itachi"+str(i)+".png"),1,0) for i in range(41,45)]] # Hard Attack
 
 # Gaara of the Sand
-gaara=[[image.load("gaara\\gaara"+str(i)+".png") for i in range(1,5)], # Stand
-        [image.load("gaara\\gaara"+str(i)+".png") for i in range(11,17)], # Walk
-        [image.load("gaara\\gaara22.png")], # Block
-        [image.load("gaara\\gaara"+str(i)+".png") for i in range(18,22)], # Jump
-        [image.load("gaara\\gaara"+str(i)+".png") for i in range(23,29)], # Hurt Light
-        [image.load("gaara\\gaara"+str(i)+".png") for i in range(23,29)], # Hurt Hard
-        [image.load("gaara\\gaara"+str(i)+".png") for i in range(29,43)], # Soft Attack
-        [image.load("gaara\\gaara"+str(i)+".png") for i in range(43,55)]] # Hard Attack
+gaara=[[image.load("assets\\gaara\\gaara"+str(i)+".png") for i in range(1,5)], # Stand
+        [image.load("assets\\gaara\\gaara"+str(i)+".png") for i in range(11,17)], # Walk
+        [image.load("assets\\gaara\\gaara22.png")], # Block
+        [image.load("assets\\gaara\\gaara"+str(i)+".png") for i in range(18,22)], # Jump
+        [image.load("assets\\gaara\\gaara"+str(i)+".png") for i in range(23,29)], # Hurt Light
+        [image.load("assets\\gaara\\gaara"+str(i)+".png") for i in range(23,29)], # Hurt Hard
+        [image.load("assets\\gaara\\gaara"+str(i)+".png") for i in range(29,43)], # Soft Attack
+        [image.load("assets\\gaara\\gaara"+str(i)+".png") for i in range(43,55)]] # Hard Attack
 
 # Ichigo Kurosaki
-ichigo=[[image.load("ichigo\\ichigo"+str(i)+".png") for i in range(2,6)], # Stand
-        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(6,14)], # Walk
-        [image.load("ichigo\\ichigo19.png") ], # Block
-        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(14,18)], # Jump
-        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(32,34)], # Hurt Light
-        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(35,39)], # Hurt Hard
-        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(48,80)], # Soft Attack
-        [image.load("ichigo\\ichigo"+str(i)+".png") for i in range(80,88)]] # Hard Attack
+ichigo=[[image.load("assets\\ichigo\\ichigo"+str(i)+".png") for i in range(2,6)], # Stand
+        [image.load("assets\\ichigo\\ichigo"+str(i)+".png") for i in range(6,14)], # Walk
+        [image.load("assets\\ichigo\\ichigo19.png") ], # Block
+        [image.load("assets\\ichigo\\ichigo"+str(i)+".png") for i in range(14,18)], # Jump
+        [image.load("assets\\ichigo\\ichigo"+str(i)+".png") for i in range(32,34)], # Hurt Light
+        [image.load("assets\\ichigo\\ichigo"+str(i)+".png") for i in range(35,39)], # Hurt Hard
+        [image.load("assets\\ichigo\\ichigo"+str(i)+".png") for i in range(48,80)], # Soft Attack
+        [image.load("assets\\ichigo\\ichigo"+str(i)+".png") for i in range(80,88)]] # Hard Attack
 
 
 # Sprites for Chakra Regen Aura
@@ -636,8 +636,8 @@ def special():
 
 ####### ITACHI SPECIAL #########
 #contains the images needed for the first itachi special
-itachis1part1=[image.load("itachiS1\\itachiS"+str(x)+".png") for x in range(1,12)] #sprites
-itachis1part2=[image.load("itachiS1\\itachi"+str(x)+".png") for x in range(1,21)] #blast
+itachis1part1=[image.load("assets\\itachiS1\\itachiS"+str(x)+".png") for x in range(1,12)] #sprites
+itachis1part2=[image.load("assets\\itachiS1\\itachi"+str(x)+".png") for x in range(1,21)] #blast
 itachis1p1special=False #status to indicate if special is running or not
 itachis1p1count=0 #keeps count of sprite position in list
 itachis1p1count2=0 #keeps count of sprite position in other list
@@ -760,11 +760,11 @@ def itachis1p2():
 #that everything freezes and itachi plays an animation of his illusion move
 
 #images for the animation below are loaded
-itachis2part1=[image.load("itachiS2\\Itachi"+str(i)+".png") for i in range(1,7)]
-itachis2part2=[image.load("itachiS2\\ItachiS"+str(i)+".png") for i in range(1,15)]
-itachifront=transform.scale(image.load("itachiS2\\Itachifront.png"),(1000,300))
-itachiback=image.load("itachiS2\\ItachiBack.jpg")
-cross=image.load("itachiS2\\cross.png")
+itachis2part1=[image.load("assets\\itachiS2\\Itachi"+str(i)+".png") for i in range(1,7)]
+itachis2part2=[image.load("assets\\itachiS2\\ItachiS"+str(i)+".png") for i in range(1,15)]
+itachifront=transform.scale(image.load("assets\\itachiS2\\Itachifront.png"),(1000,300))
+itachiback=image.load("assets\\itachiS2\\ItachiBack.jpg")
+cross=image.load("assets\\itachiS2\\cross.png")
 
 def itachis2p1():
     global p2health,p1chakra
@@ -835,14 +835,14 @@ narutos1p1special=False #special status
 narutos1p1temp=[] #container for player_1 sprites
 narutos1p1counter=0 #counter that acts as a time limit
 #below are all sprites for the ninetail
-ninetail=[[image.load("narutoS1\\ninetail"+str(i)+".png") for i in range(1,8)],#Stand #
-         [image.load("narutoS1\\ninetail"+str(i)+".png") for i in range(8,15)],#Walk
-         [image.load("narutoS1\\ninetail"+str(i)+".png") for i in range(8,15)],#run
-         [image.load("narutoS1\\ninetail"+str(i)+".png") for i in range(16,20)],#jump
-         [image.load("narutoS1\\ninetail"+str(i)+".png") for i in range(21,23)],#hurtlight
-         [image.load("narutoS1\\ninetail"+str(i)+".png") for i in range(23,27)],#hurthard
-         [image.load("narutoS1\\ninetail"+str(i)+".png") for i in range(28,36)],#softattack
-         [image.load("narutoS1\\ninetail"+str(i)+".png") for i in range(38,46)]]#hardattack
+ninetail=[[image.load("assets\\narutoS1\\ninetail"+str(i)+".png") for i in range(1,8)],#Stand #
+         [image.load("assets\\narutoS1\\ninetail"+str(i)+".png") for i in range(8,15)],#Walk
+         [image.load("assets\\narutoS1\\ninetail"+str(i)+".png") for i in range(8,15)],#run
+         [image.load("assets\\narutoS1\\ninetail"+str(i)+".png") for i in range(16,20)],#jump
+         [image.load("assets\\narutoS1\\ninetail"+str(i)+".png") for i in range(21,23)],#hurtlight
+         [image.load("assets\\narutoS1\\ninetail"+str(i)+".png") for i in range(23,27)],#hurthard
+         [image.load("assets\\narutoS1\\ninetail"+str(i)+".png") for i in range(28,36)],#softattack
+         [image.load("assets\\narutoS1\\ninetail"+str(i)+".png") for i in range(38,46)]]#hardattack
 
 def narutos1p1():
     global narutos1p1temp,player_1,narutos1p1special,narutos1p1counter
@@ -902,10 +902,10 @@ def narutos1p2():
 #the second special attack throws a rasengan ball at opponent
 
 #all the sprites below
-rassprite=[[image.load("narutoS2\\naruto"+str(i)+".png") for i in range(1,13)],
-                [image.load("narutoS2\\naruto"+str(i)+".png") for i in range(14,19)],
-                [image.load("narutoS2\\naruto"+str(i)+".png") for i in range(21,30)],
-                [image.load("narutoS2\\naruto"+str(i)+".png") for i in range(44,47)]]
+rassprite=[[image.load("assets\\narutoS2\\naruto"+str(i)+".png") for i in range(1,13)],
+                [image.load("assets\\narutoS2\\naruto"+str(i)+".png") for i in range(14,19)],
+                [image.load("assets\\narutoS2\\naruto"+str(i)+".png") for i in range(21,30)],
+                [image.load("assets\\narutoS2\\naruto"+str(i)+".png") for i in range(44,47)]]
 
 #the sprites are resized
 for i in range(len(rassprite)):
@@ -1061,14 +1061,14 @@ def narutos2p2():
 #this exactly the same as the ninetail function above
 #there for doesnt need to be commented again
 #the variables and images are changed
-bankai=[[image.load("ichigoS1\\bankai"+str(i)+".png") for i in range(1,5)],#Stand
-        [image.load("ichigoS1\\bankai"+str(i)+".png") for i in range(5,13)],#Walk
-        [image.load("ichigoS1\\bankai"+str(i)+".png") for i in range(5,13)],#run
-        [image.load("ichigoS1\\bankai"+str(i)+".png") for i in range(13,19)],#Jump
-        [image.load("ichigoS1\\bankai"+str(i)+".png") for i in range(20,22)],#Hurt Light
-        [image.load("ichigoS1\\bankai"+str(i)+".png") for i in range(29,32)],#Hurt Hard
-        [image.load("ichigoS1\\bankai"+str(i)+".png") for i in range(49,88)],#Soft Attack
-        [image.load("ichigoS1\\bankai"+str(i)+".png") for i in range(106,114)]]#Hard Attack
+bankai=[[image.load("assets\\ichigoS1\\bankai"+str(i)+".png") for i in range(1,5)],#Stand
+        [image.load("assets\\ichigoS1\\bankai"+str(i)+".png") for i in range(5,13)],#Walk
+        [image.load("assets\\ichigoS1\\bankai"+str(i)+".png") for i in range(5,13)],#run
+        [image.load("assets\\ichigoS1\\bankai"+str(i)+".png") for i in range(13,19)],#Jump
+        [image.load("assets\\ichigoS1\\bankai"+str(i)+".png") for i in range(20,22)],#Hurt Light
+        [image.load("assets\\ichigoS1\\bankai"+str(i)+".png") for i in range(29,32)],#Hurt Hard
+        [image.load("assets\\ichigoS1\\bankai"+str(i)+".png") for i in range(49,88)],#Soft Attack
+        [image.load("assets\\ichigoS1\\bankai"+str(i)+".png") for i in range(106,114)]]#Hard Attack
 ichigos1p1special=False
 ichigos1p1temp=[]
 ichigos1p1counter=0
@@ -1123,7 +1123,7 @@ def ichigos1p2():
             p2sc,p2wc,p2jump,p2cc,p2hc,p2shc=0,0,0,0,0,0
 
             
-ichispecial=[image.load("ichigoS2\\ichigo"+str(i)+".png") for i in range(1,24)] #contains all the sprites
+ichispecial=[image.load("assets\\ichigoS2\\ichigo"+str(i)+".png") for i in range(1,24)] #contains all the sprites
 #similar variables as functions above
 ichigos2p1counter=0
 ichigos2p1special=False
@@ -1200,8 +1200,8 @@ def ichigos2p2():
             
 ################### LINK SPECIAL ###############################
 ############ Link Specials #############################
-linkS1=[image.load("linkS1\\linkS1"+str(i)+".png") for i in range(1,19)]
-linkArrows=[image.load("linkS1\\linkArrows"+str(i)+".png") for i in range(1,4)]
+linkS1=[image.load("assets\\linkS1\\linkS1"+str(i)+".png") for i in range(1,19)]
+linkArrows=[image.load("assets\\linkS1\\linkArrows"+str(i)+".png") for i in range(1,4)]
 links1p1count,links1p1count2=0,0
 links1p1special=False
 links1p1x2=p1x-linkArrows[links1p1count2].get_width()-0
@@ -1324,9 +1324,9 @@ def links1p2():
         links1p2special=False
 
 
-linkS2=[image.load("linkS2\\linkS2"+str(i)+".png") for i in range(1,21)]
-linkBomb=[image.load("linkS2\\linkBomb"+str(i)+".png") for i in range(1,6)]
-linkExplosion=[image.load("linkS2\\linkExplosion"+str(i)+".png") for i in range(1,6)]        
+linkS2=[image.load("assets\\linkS2\\linkS2"+str(i)+".png") for i in range(1,21)]
+linkBomb=[image.load("assets\\linkS2\\linkBomb"+str(i)+".png") for i in range(1,6)]
+linkExplosion=[image.load("assets\\linkS2\\linkExplosion"+str(i)+".png") for i in range(1,6)]        
 links2p1count,links2p1count2=0,0
 links2p1special=False
 links2p1x2=p2x-linkBomb[links2p1count2].get_width()-0
@@ -1440,9 +1440,9 @@ def links2p1(): #Bomb Attack
         if linkp1Bcount%len(linkExplosion)==4:
             links2p1special=False
 
-linkS2=[image.load("linkS2\\linkS2"+str(i)+".png") for i in range(1,21)]
-linkBomb=[image.load("linkS2\\linkBomb"+str(i)+".png") for i in range(1,6)]
-linkExplosion=[image.load("linkS2\\linkExplosion"+str(i)+".png") for i in range(1,6)]        
+linkS2=[image.load("assets\\linkS2\\linkS2"+str(i)+".png") for i in range(1,21)]
+linkBomb=[image.load("assets\\linkS2\\linkBomb"+str(i)+".png") for i in range(1,6)]
+linkExplosion=[image.load("assets\\linkS2\\linkExplosion"+str(i)+".png") for i in range(1,6)]        
 links2p2count,links2p2count2=0,0
 links2p2special=False
 links2p2x2=p2x-linkBomb[links2p2count2].get_width()-0
@@ -1559,8 +1559,8 @@ def links2p2():
             links2p2special=False
 ########################################### GaaraSpecials ########################################
 
-gaaraS1=[image.load("gaaraS1\\gaaraS1"+str(i)+".png") for i in range(1,22)]
-gaaraCoffin=[image.load("gaaraS1\\gaaraCoffin"+str(i)+".png") for i in range(1,18)]
+gaaraS1=[image.load("assets\\gaaraS1\\gaaraS1"+str(i)+".png") for i in range(1,22)]
+gaaraCoffin=[image.load("assets\\gaaraS1\\gaaraCoffin"+str(i)+".png") for i in range(1,18)]
 
 gaaras1p1count=0
 gaaras1p1special=False
@@ -1620,8 +1620,8 @@ def gaaras1p2(): #Same for Player 2
         gaaras1p2special=False
 
         
-gsprite=[image.load("gaaraS2\\gaara"+str(i)+".png")for i in range(1,4)]
-gball=[image.load("gaaraS2\\gaaraball"+str(i)+".png")for i in range(1,7)]
+gsprite=[image.load("assets\\gaaraS2\\gaara"+str(i)+".png")for i in range(1,4)]
+gball=[image.load("assets\\gaaraS2\\gaaraball"+str(i)+".png")for i in range(1,7)]
 p1gspecial=False
 
 p1gcount=0
