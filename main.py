@@ -27,7 +27,7 @@ naruto=[[image.load("assets\\naruto\\naruto"+str(i)+".png") for i in range(1,7)]
 
 # The code below will resize each of the sprite for naruto appropriately since naruto sprites are the smallest
 for i in range(len(naruto)):
-    naruto[i]=map(lambda x:transform.scale(x,(int(1.4*x.get_width()),int(1.4*x.get_height()))),naruto[i])
+    naruto[i]=[transform.scale(x, (int(1.4 * x.get_width()), int(1.4 * x.get_height()))) for x in naruto[i]]
     
 # Link 
 link=[[image.load("assets\\link\\link"+str(i)+".png") for i in range(24,28)], # Stand
